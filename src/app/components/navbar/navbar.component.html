@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg" style="background-color:#34656D">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="./assets/LogoTECOstore.png" height="60"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span><img src="./assets/menu.png" height="30"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Esto me genera el contenido del menú del navbar -->
+            <a class="me-auto"></a> <!-- Esto es para que las opciones del menú se ubiquen al final del navbar -->
+            <ul class="navbar-nav  mb-2 mb-lg-0">
+                <!-- Este el es menu del navbar -->
+                <li class="nav-item dropdown">
+                    <!-- Este el boton de Mi perfil del menu -->
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'BIZ UDGothic', sans-serif; 
+                                font-family: 'Patrick Hand', cursive; font-size: large; color: #ffffff;">
+                        <img style="margin-left:5%" src="./assets/perfil.png" height="30"><!-- Icono de perfil -->
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li *ngIf="statusLogin===false" role="status"><a class="dropdown-item" routerLink="/Login">Iniciar Sesión</a></li>
+                        <li *ngIf="statusLogin" role="status"><a class="dropdown-item" href="#">Mi perfil</a></li>
+                        <li *ngIf="statusLogin" role="status"><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                        <!-- <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <!-- Este el boton de Inicio del menu -->
+                    <a class="nav-link active " aria-current="page" routerLink="/Home" style="font-family: 'BIZ UDGothic', sans-serif; 
+                        font-family: 'Patrick Hand', cursive; font-size: large; color: #ffffff;">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <!-- Este el boton de Productos del menu -->
+                    <a class="nav-link active" aria-current="page" href="#" style="font-family: 'BIZ UDGothic', sans-serif; 
+                    font-family: 'Patrick Hand', cursive; font-size: large; color: #ffffff;">Productos</a>
+                </li>
+
+                <li class="nav-item">
+                    <!-- Este el boton de Acerca de del menu -->
+                    <a class="nav-link active" aria-current="page" href="#" style="font-family: 'BIZ UDGothic', sans-serif; 
+                    font-family: 'Patrick Hand', cursive; font-size: large; color: #ffffff;">Acerca de </a>
+                </li>
+
+                
+                
+                <!-- <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Buscar producto" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                  </form> -->
+            </ul>
+        </div>
+    </div>
+</nav>

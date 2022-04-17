@@ -1,0 +1,86 @@
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center" style="margin-top:5%">
+            <div class="col-xl-4">
+                <div class="divider d-flex align-items-center my-4">
+                    <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
+                    font-family: 'Patrick Hand', cursive; font-size:x-large">Registrarse</p>
+                </div>
+                <form class="mx-1 mx-md-4" [formGroup]="registerUser" (ngSubmit)="agregarUsuario()" style="margin-top:10%">
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <div class="input-group ms-1" style="width:99%;">
+                                <input type="text" id="formRegisterNombre" class="form-control" formControlName="nombre" placeholder="Nombre"/>
+                                <input type="text" id="formRegisterApellidos" class="form-control" formControlName="apellidos" placeholder="Apellidos"/>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <input type="email" id="formRegisterCE" class="form-control"
+                            formControlName="correo" placeholder="Correo electrónico" />
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                        <div class="input-group">
+                            <input [type]="passLock? 'password' : 'text'" id="formRegisterPassword" class="form-control" formControlName="contra"
+                            placeholder="Ingrese su contraseña" />
+                            <button (click)="buttonVPass()" class="btn btn-outline-secondary" style="border-color:#CED4DA;" type="button" >
+                                <i *ngIf="passLock===true" class="fa-solid fa-lock"></i>
+                                <i *ngIf="passLock===false" class="fa-solid fa-lock-open"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    
+
+                    <!-- <div class="form-check d-flex justify-content-center mb-5" >
+                        <input class="form-check-input me-2" type="checkbox" value="" id="formCheckTerminos" />
+                        <label class="form-check-label" for="form2Example3">
+                            Estoy de acuerdo con los <a href="#!">términos y condiciones</a>
+                        </label>
+                    </div> -->
+                    <div class="divider d-flex align-items-center my-4 ">
+                        <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
+                        font-family: 'Patrick Hand', cursive; font-size:x-large"></p>
+                    </div>
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                        <button type="submit" class="btn btn-primary btn-lg"
+                            style="background-color:#34656D; border-color: #34656D;">Registrarse</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 "
+        style="background-color:#34656D">
+        <!-- Copyright -->
+        <div class="text-white mb-3 mb-md-0 " style="font-family: 'BIZ UDGothic', sans-serif; 
+        font-family: 'Patrick Hand', cursive;">
+            Copyright © 2022. Derechos reservados.
+        </div> 
+        <!-- Copyright -->
+
+        <!-- Right -->
+        <div>
+            <a href="#!" class="text-white me-4">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#!" class="text-white me-4">
+                <i class="fab fa-google"></i>
+            </a>
+            <a href="#!" class="text-white">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+        <!-- Right -->
+    </div>
+</section>

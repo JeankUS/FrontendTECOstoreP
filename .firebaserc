@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "maquetatecostoredb": {
+      "hosting": {
+        "FrontendTECOstore": [
+          "maquetatecostoredb"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "maquetatecostoredb"
+  }
+}
