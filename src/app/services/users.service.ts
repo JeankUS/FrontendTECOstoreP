@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile, user} from '@angular/fire/auth';
 import { Firestore, addDoc, collection, collectionData, doc, docData, deleteDoc, updateDoc, DocumentReference, setDoc } from '@angular/fire/firestore';
-import { user } from '../user.model';
+import { Observable, take } from 'rxjs';
+import { userM } from '../userM.model';
 
 
 @Injectable({
@@ -11,17 +12,17 @@ export class UsersService {
 
 
 
+  constructor(private firestore: Firestore, private auth: Auth) {
+   }
 
-  constructor(private firestore: Firestore, private auth: Auth) { }
-
-  agregarUsuario(usuario: user) {
+  agregarUsuario(usuario: userM) {
     const usuariosRef = collection(this.firestore, 'usuariosI');
     return addDoc(usuariosRef, usuario);
   }
 
   async emailSignUp(email: string, password: string)
     : Promise<void> {
-
+ 
     const credential = await createUserWithEmailAndPassword(
       this.auth,
       email,
@@ -34,6 +35,11 @@ export class UsersService {
 
     // create user in db
     // ...
+  }
+
+  getEmpleado(correo: string):Observable<any[]>{
+    const bookRef = doc(this.firestore, 'usuariosI/'+correo);
+    return docData(bookRef, { idField: 'id' }) as Observable<any>;
   }
 
 }
