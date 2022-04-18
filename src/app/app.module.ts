@@ -30,6 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
 import {provideAuth,getAuth } from '@angular/fire/auth';
+import { MiperfilComponent } from './components/miperfil/miperfil.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {provideAuth,getAuth } from '@angular/fire/auth';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    NavbarComponent
+    NavbarComponent,
+    MiperfilComponent
   ],
   imports: [
     BrowserModule,
@@ -62,4 +64,8 @@ import {provideAuth,getAuth } from '@angular/fire/auth';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  
+
+
+}

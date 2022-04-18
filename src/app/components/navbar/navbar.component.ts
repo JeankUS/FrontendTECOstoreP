@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
+import { GlobalVars } from 'src/app/common/global-vars';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,20 +9,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  public statusLogin=false;
-  constructor() { }
+  constructor( private auth : Auth) { }
 
   ngOnInit(): void {
-    // this.validLoging();
+    this.validLoging();
   }
 
-
-  validLoging(){
-    if(this.statusLogin===true){
-      console.log(this.statusLogin)
-      return true;
+  validLoging() {
+    if (this.auth.currentUser!== null) {
+      console.log("esto si", this.auth.currentUser.email)
+      return true
+    } else {
+      return false
     }
-    return false
   }
 
+  SignOut() {
+    this.auth.signOut();
+  }
 }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { login } from 'src/app/login.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { UsersService } from 'src/app/services/users.service';
+import { GlobalVars } from 'src/app/common/global-vars';
 // import { AngularFireAuth } from '@angular/fire/compat/auth';
 // import firebase from 'firebase/compat/app';
 @Component({
@@ -15,6 +16,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   passLock = true;
 
+
+  
   usuario: login = { correo: '', contra: '' };
   constructor(
     private router: Router,
@@ -36,17 +39,14 @@ export class LoginComponent implements OnInit {
       contra: this.loginForm.value.password
     }
     this._serviceAuth.emailLogin(usuario.correo, usuario.contra).then(() => {
+      GlobalVars.logeado = true;
+
       this.router.navigate(['/home']);
-      console.log("esto: ", usuario.correo, " esto otro: ", usuario.contra)
-      console.log("Se ha logeado exitosamente");
+      console.log(GlobalVars.logeado);
     })
   }
 
-  SignOut() {
-    this._serviceAuth.SignOut().then(() => {
-      window.alert('Logged out!');
-    })
-  }
+  
 
   // login() {
   //   this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());

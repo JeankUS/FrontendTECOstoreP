@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UsersService } from 'src/app/services/users.service';
-import { userM } from 'src/app/userM.model';
+import { userEmpresa } from 'src/app/userM.model';
 
 @Component({
   selector: 'app-register',
@@ -15,14 +15,14 @@ export class RegisterComponent implements OnInit {
   registerUser: FormGroup;
   passLock = true;
   submitted = false;
+  loading= false;
 
-  usuarios : userM[]=[];
-
-  usuario: userM = { nombre: '', apellidos: '', correo: '', contra: '' };
+  usuario: userEmpresa = { idj:'', nombre: '', telefono: '', correo: '', contra: '' };
   constructor(private fb: FormBuilder, private _usuarioService: UsersService, private router: Router, private toastr: ToastrService, private auth: Auth) {
     this.registerUser = this.fb.group({
+      idj: ['', Validators.required],
       nombre: ['', Validators.required],
-      apellidos: ['', Validators.required],
+      telefono: ['', Validators.required],
       correo: ['', Validators.required],
       contra: ['', Validators.required]
     })
@@ -30,52 +30,43 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
   agregarUsuario() {
-    const usuario: userM = {
+    const usuario: userEmpresa = {
+      idj: this.registerUser.value.idj,
       nombre: this.registerUser.value.nombre,
-      apellidos: this.registerUser.value.apellidos,
+      telefono: this.registerUser.value.telefono,
       correo: this.registerUser.value.correo,
       contra: this.registerUser.value.contra
     }
-    if (this.usuario.correo !== null) {
-      this._usuarioService.getEmpleado(this.usuario.correo).subscribe(data => {
-        console.log("Algo")
-        if (usuario.contra.length >= 6) {
-          this._usuarioService.emailSignUp(usuario.correo, usuario.contra).then(() => {
-            // this.verificarCorreo();
-            this._usuarioService.agregarUsuario(usuario).then(() => {
-              this.toastr.success('El empleado fue registrado con éxito.', 'Empleado Registrado', { positionClass: 'toast-bottom-right' });
-              this.router.navigate(['/Login']);
-              
-            }).catch(err => {
-              this.toastr.error('El correo ingresado no es válido', 'Error al registrar', { positionClass: 'toast-bottom-right' });
-            })
-          })
-        }else{
-          this.toastr.error('La contraseña ingresada debe ser mayor a 6 caracteres', 'Error al registrar', { positionClass: 'toast-bottom-right' });
+    this.loading = true;
+    if (usuario.contra.length >= 6) {
+      console.log(this.auth.currentUser)
+      this._usuarioService.emailSignUp(usuario.correo, usuario.contra).then(() => {
+        this._usuarioService.agregarUsuario(usuario).then(() => {
+          this.loading = false;
+          this.toastr.success('El empleado fue registrado con éxito.', 'Empleado Registrado', { positionClass: 'toast-bottom-right' });
+          this.router.navigate(['/Login']);
+
+        }).catch(err => {
+          // console.log(err);
+        })
+      }).catch(err => {
+        if (err.message == 'Firebase: Error (auth/invalid-email).') {
+          this.toastr.error('El correo ingresado no es válido', 'Error al registrarse', { positionClass: 'toast-bottom-right' });
+        } else if (err.message == 'Firebase: Error (auth/email-already-in-use).') {
+          console.log("123")
+          this.toastr.error('El correo ingresado ya existe', 'Error al registrarse', { positionClass: 'toast-bottom-right' });
+        } else if(err.message == 'Firebase: Error (auth/missing-email).'){
+          this.toastr.error('Por favor ingrese su correo', 'Error al registrarse', { positionClass: 'toast-bottom-right' });
         }
+        // console.log(err.message);
+
       })
-    }
-    
-
-    
-
-    // this.loading = false;
-
-
-  }
-
-  
-  verificarCorreo() {
-    if (this.usuario.correo !== null) {
-      this._usuarioService.getEmpleado(this.usuario.correo).subscribe(data => {
-        
-        // this.createEmpleado.setValue({
-        // })
-      })
+    } else {
+      this.toastr.error('La contraseña ingresada debe ser mayor a 6 carácteres', 'Error al registrarse', { positionClass: 'toast-bottom-right' });
     }
   }
-
 
   buttonVPass() {
     if (this.passLock == true) {

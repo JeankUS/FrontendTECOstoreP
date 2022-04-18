@@ -1,6 +1,7 @@
-export interface userM {
+export interface userEmpresa {
+    idj: string,
     nombre: string,
-    apellidos: string,
+    telefono: string,
     correo: string,
     contra: string
 }
