@@ -19,3 +19,8 @@
 #formRegistrarEmpresa{
     margin-top:10%;
 }
+
+.buttonDarkGreen{
+    background-color:#34656D; 
+    border-color: #34656D;
+}

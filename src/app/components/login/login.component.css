@@ -19,3 +19,17 @@
 .i {
     -webkit-hyphens: none;
 }
+
+.buttonDarkGreen{
+    background-color:#34656D; 
+    border-color: #34656D;
+}
+
+.loginButton{
+    padding-left: 2.5rem; padding-right: 2.5rem;
+}
+
+.letra{
+    font-family: 'BIZ UDGothic', sans-serif; 
+    font-family: 'Patrick Hand', 'cursive';
+}

@@ -15,15 +15,14 @@ import { userEmpresa } from 'src/app/usuarioEmpresa.model';
 export class RegisterComponent implements OnInit {
   //Formularios
   registrarEmpresa: FormGroup;
-
+  //listas
+  empresas: userEmpresa []=[]
   //Inicialización de objetos
   usuario: userEmpresa = { idj: '', nombre: '', telefono: '', correo: '', contra: '' };
-
   //Otros
   passLock = true;                                                                      //'passLock' Permite conocer el estado del input password
   submitted = false;
   loading = false;                                                                      //'loading' Permite conocer el estado del icono cargando
-
   //Constructor
   constructor(
     private fb: FormBuilder,
@@ -41,6 +40,13 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.cargarUsuarios();
+  }
+  //Carga la lista de empresas con las empresas registradas en la base de datos
+  cargarUsuarios(){
+    this._usuarioService.getUsuarios().subscribe((res: userEmpresa[]) => {
+      this.empresas = res;
+    });
   }
 
   
@@ -55,28 +61,46 @@ export class RegisterComponent implements OnInit {
     }
 
     this.loading = true;
-    if (usuario.contra.length >= 6) {
-      this._usuarioService.emailSignUp(usuario.correo, usuario.contra).then(() => {
-        this._usuarioService.agregarUsuario(usuario).then(() => {
-          this.loading = false;
-          this.toastr.success('El empleado fue registrado con éxito.', 'Empleado Registrado', { positionClass: 'toast-bottom-right' });
-          this.router.navigate(['/Login']);
-
+    if(this.validarIDJ(this.registrarEmpresa.value.idj)==true){
+      if (usuario.contra.length >= 6) {
+        this._usuarioService.emailSignUp(usuario.correo, usuario.contra).then(() => {
+          this._usuarioService.agregarUsuario(usuario).then(() => {
+            this.loading = false;
+            this.toastr.success('El empleado fue registrado con éxito.', 'Empleado Registrado', { positionClass: 'toast-bottom-right' });
+            this.router.navigate(['/Login']);
+          }).catch(err => {
+            // console.log(err);
+          })
         }).catch(err => {
-          // console.log(err);
+          if (err.message == 'Firebase: Error (auth/invalid-email).') {
+            this.toastr.error('El correo ingresado no es válido', 'Error al registrarse', { positionClass: 'toast-bottom-right' });
+            this.loading = false;
+          } else if (err.message == 'Firebase: Error (auth/email-already-in-use).') {
+            this.toastr.error('El correo ingresado ya existe', 'Error al registrarse', { positionClass: 'toast-bottom-right' });
+            this.loading = false;
+          } else if (err.message == 'Firebase: Error (auth/missing-email).') {
+            this.toastr.error('Por favor ingrese su correo', 'Error al registrarse', { positionClass: 'toast-bottom-right' });
+            this.loading = false;
+          }
         })
-      }).catch(err => {
-        if (err.message == 'Firebase: Error (auth/invalid-email).') {
-          this.toastr.error('El correo ingresado no es válido', 'Error al registrarse', { positionClass: 'toast-bottom-right' });
-        } else if (err.message == 'Firebase: Error (auth/email-already-in-use).') {
-          this.toastr.error('El correo ingresado ya existe', 'Error al registrarse', { positionClass: 'toast-bottom-right' });
-        } else if (err.message == 'Firebase: Error (auth/missing-email).') {
-          this.toastr.error('Por favor ingrese su correo', 'Error al registrarse', { positionClass: 'toast-bottom-right' });
-        }
-      })
-    } else {
-      this.toastr.error('La contraseña ingresada debe ser mayor a 6 carácteres', 'Error al registrarse', { positionClass: 'toast-bottom-right' });
+      } else {
+        this.toastr.error('La contraseña ingresada debe ser mayor a 6 carácteres', 'Error al registrarse', { positionClass: 'toast-bottom-right' });
+      }
+    }else{
+      this.toastr.error('La cédula jurídica ingresada ya existe.', 'Error al registrarse', { positionClass: 'toast-bottom-right' });
+      this.loading = false;
     }
+  }
+
+  
+  //Validaciones
+  validarIDJ(id:string){
+    for (let i = 0; i < this.empresas.length; i++) {
+      if(this.empresas[i].idj==id){
+        return false;
+      }
+    }
+    return true
   }
 
   //Permite validar el boton de visualizar o no la contraseña
