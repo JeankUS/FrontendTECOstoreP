@@ -11,12 +11,11 @@ export class HomeComponent implements OnInit {
   constructor(private auth: Auth) { }
 
   ngOnInit(): void {
-    this.validLoging();
+    // this.validLoging();
   }
 
   validLoging() {
     if (this.auth.currentUser!== null) {
-      console.log("esto si", this.auth.currentUser.email)
       return true
     } else {
       return false

@@ -7,8 +7,7 @@
                     font-family: 'Patrick Hand', cursive; font-size:x-large">Registrarse</p>
 
                 </div>
-                <form class="mx-1 mx-md-4" [formGroup]="registerUser" (ngSubmit)="agregarUsuario()"
-                    style="margin-top:10%">
+                <form class="mx-1 mx-md-4" id="formRegistrarEmpresa" [formGroup]="registrarEmpresa" (ngSubmit)="agregarEmpresa()">
                     <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-building fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
@@ -26,8 +25,8 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-square-phone-flip fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
-                            <input type="number" id="formRegisterTelefono" class="form-control" formControlName="telefono"
-                                placeholder="N° Telefono" />
+                            <input type="number" id="formRegisterTelefono" class="form-control"
+                                formControlName="telefono" placeholder="N° Telefono" />
                         </div>
                     </div>
 

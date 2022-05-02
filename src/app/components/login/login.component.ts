@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { login } from 'src/app/login.model';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UsersService } from 'src/app/services/users.service';
-import { GlobalVars } from 'src/app/common/global-vars';
+import { Auth } from '@angular/fire/auth';
 // import { AngularFireAuth } from '@angular/fire/compat/auth';
 // import firebase from 'firebase/compat/app';
 @Component({
@@ -13,16 +13,24 @@ import { GlobalVars } from 'src/app/common/global-vars';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  //Formularios
   loginForm: FormGroup;
+
+  //listas
+
+  //Inicialización de objetos
+  usuario: login = { correo: '', contra: '' };
+
+  //Otros
   passLock = true;
 
-
-  
-  usuario: login = { correo: '', contra: '' };
+  //Constructor
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private _serviceAuth: AuthService,) {
+    private _serviceAuth: AuthService,
+    private _userService: UsersService,
+    private auth: Auth) {
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -39,22 +47,18 @@ export class LoginComponent implements OnInit {
       contra: this.loginForm.value.password
     }
     this._serviceAuth.emailLogin(usuario.correo, usuario.contra).then(() => {
-      GlobalVars.logeado = true;
-
       this.router.navigate(['/home']);
-      console.log(GlobalVars.logeado);
     })
   }
 
-  
+  loginWithGoogle() {
+    console.log("Login con google temporalmente fuera de servicio")
+    // this._serviceAuth.signInWithGoogle().then(() => {
 
-  // login() {
-  //   this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-  // }
-  // logout() {
-  //   this.auth.signOut();
-  // }
+    // });
+  }
 
+  //Permite validar el boton de visualizar o no la contraseña
   buttonVPass() {
     if (this.passLock === true) {
       this.passLock = false;

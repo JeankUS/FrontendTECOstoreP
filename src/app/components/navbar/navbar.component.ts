@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  
   constructor( private auth : Auth) { }
 
   ngOnInit(): void {
@@ -17,7 +18,6 @@ export class NavbarComponent implements OnInit {
 
   validLoging() {
     if (this.auth.currentUser!== null) {
-      console.log("esto si", this.auth.currentUser.email)
       return true
     } else {
       return false
