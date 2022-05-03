@@ -107,7 +107,6 @@ export class RegisterComponent implements OnInit {
   buttonVPass() {
     if (this.passLock == true) {
       this.passLock = false;
-      console.log(this.passLock)
     } else {
       this.passLock = true;
     }

@@ -1,1 +1,101 @@
-<p>miperfil works!</p>
+<div class="vh-100">
+    <div class="container-fluid h-custom ">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-xl-4">
+                <div class="divider d-flex align-items-center my-4">
+                    <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
+                    font-family: 'Patrick Hand', cursive; font-size:x-large">Mi perfil</p>
+                </div>
+                <div class="card" *ngIf="editando==false">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <p class="letrita text-end">Cédula Jurídica: </p>
+                                <p class="letrita text-end">Empresa: </p>
+                                <p class="letrita text-end">Teléfono: </p>
+                                <p class="letrita text-end">Correo: </p>
+                            </div>
+                            <div class="col">
+                                <p class="letrita" id="cargaIDJ"></p>
+                                <p class="letrita" id="cargaNE"></p>
+                                <p class="letrita" id="cargaTE"></p>
+                                <p class="letrita" id="cargaCE"></p>
+                            </div>
+                        </div>
+                        <div class="divider d-flex align-items-center my-4">
+                            <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
+                            font-family: 'Patrick Hand', cursive; font-size:x-large">
+                                <i type="button" class="fa-solid fa-edit me-3 iconosSelect"
+                                    (click)="cargarEditarPerfil()"></i>
+                                <i type="button" class="fa-solid fa-trash ms-3 iconosSelect"
+                                    (click)="eliminarUsuarioEmpresa()"></i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" *ngIf="editando==true">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <p class="letrita text-end">Cédula Jurídica: </p>
+                                <p class="letrita text-end">Empresa: </p>
+                                <p class="letrita text-end">Teléfono: </p>
+                                <p class="letrita text-end">Correo: </p>
+                                <p class="letrita text-end">Contraseña: </p>
+                            </div>
+                            <div class="col" [formGroup]="editForm">
+                                <p><input class="" style="border: none;" type="text" id="formIDJ" type="text"
+                                        formControlName="IDJ" onmousedown="return false"></p>
+                                <p><input class="inputEdit" id="formNE" type="text" formControlName="nombre"></p>
+                                <p><input class="inputEdit" id="formTE" type="text" formControlName="telefono"></p>
+                                <p><input class="" style="border: none;" id="formCE" type="text"
+                                        formControlName="correo" onmousedown="return false"></p>
+                                <p><input class="inputEdit" id="formContra" type="text" formControlName="contra"></p>
+                            </div>
+                        </div>
+
+                        <div class="divider d-flex align-items-center my-4">
+                            <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
+                            font-family: 'Patrick Hand', cursive; font-size:x-large">
+                                <i type="button" class="fa-solid fa-arrow-left me-3 iconosSelect" (click)="volverCarga()"></i>
+                                <i type="button" class="fa-solid fa-check ms-3 iconosSelect" data-toggle="modal"
+                                    data-target="#exampleModal"></i>
+                            </p>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+                                        <button type="button" class="btn-close" data-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ¿Desea guardar cambios?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btnConfimar" (click)="editarEmpresa()"
+                                            data-dismiss="modal">Guardar
+                                            Cambios</button>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="divider2 d-flex align-items-center my-4">
+                    <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
+                    font-family: 'Patrick Hand', cursive; font-size:x-large">
+                        <button type="button" class="btn btnConfimar ms-3">Agregar producto</button>
+                        <button type="button" class="btn btnConfimar ms-3">Mis productos</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

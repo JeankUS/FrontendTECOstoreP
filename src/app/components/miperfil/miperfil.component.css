@@ -1,0 +1,60 @@
+.fondo {
+    background: #FF8008;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFC837, #FF8008);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFC837, #FF8008);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-radius:10%;
+
+}
+
+
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #34656D;
+}
+
+.divider2:after,
+.divider2:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #fffff1;
+}
+
+.h-custom {
+    height: calc(100% - 73px);
+}
+
+@media (max-width: 450px) {
+    .h-custom {
+        height: 100%;
+    }
+}
+
+.letrita {
+    font-family: 'BIZ UDGothic',sans-serif;
+    font-family: 'Patrick Hand', cursive;
+    font-size: large;
+}
+
+.inputEdit {
+    border-color: #34656D;
+}
+
+.btnConfimar {
+    background-color: #34656D;
+    color: white;
+}
+
+.iconosSelect {
+    color: #34656D;
+}
+
+.card {
+    border: none;
+}

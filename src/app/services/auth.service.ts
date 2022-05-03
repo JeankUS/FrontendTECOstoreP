@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Auth, GoogleAuthProvider, signInWithEmailAndPassword, user  } from '@angular/fire/auth';
 import { signInWithPopup } from '@firebase/auth';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private auth: Auth ) { }
+  constructor(private auth: Auth, private toastr: ToastrService) { }
 
   async emailLogin(email: string, password: string): Promise<any> {
     return await signInWithEmailAndPassword(this.auth, email, password);

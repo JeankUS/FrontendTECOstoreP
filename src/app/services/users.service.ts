@@ -18,11 +18,20 @@ export class UsersService {
     const usuariosRef = collection(this.firestore, 'usuariosI');
     return addDoc(usuariosRef, usuario);
   }
+  eliminarUsuario(id: string): Promise<any> {
+    const usuarioRef = doc(this.firestore, 'usuariosI/'+id);
+    console.log(usuarioRef)
+    return deleteDoc(usuarioRef);
+  }
 
   getUsuarios(): Observable<any[]> {
     const empleados = collection(this.firestore, 'usuariosI');
-    return collectionData(empleados, { idField: 'correo' }) as Observable<any[]>
+    return collectionData(empleados, { idField: 'id' }) as Observable<any[]>
   }
+  // getUsuarios(): Observable<any[]> {
+  //   const empleados = collection(this.firestore, 'usuariosI');
+  //   return collectionData(empleados, { idField: 'correo' }) as Observable<any[]>
+  // }
 
   async emailSignUp(email: string, password: string)
     : Promise<void> {
@@ -36,6 +45,9 @@ export class UsersService {
       credential.user, { displayName: credential.user.displayName }
     );
   }
-
+  updateUsuario(id:string, usuario: any): Promise<any> {
+    const userDocRef = doc(this.firestore, 'usuariosI/'+id);
+    return updateDoc(userDocRef, usuario);
+  }
 
 }

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UsersService } from 'src/app/services/users.service';
 import { Auth } from '@angular/fire/auth';
+import { ToastrService } from 'ngx-toastr';
 // import { AngularFireAuth } from '@angular/fire/compat/auth';
 // import firebase from 'firebase/compat/app';
 @Component({
@@ -30,13 +31,14 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private _serviceAuth: AuthService,
     private _userService: UsersService,
+    private toastr: ToastrService,
     private auth: Auth) {
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
     })
   }
-
+ 
 
   ngOnInit(): void {
   }
@@ -48,6 +50,10 @@ export class LoginComponent implements OnInit {
     }
     this._serviceAuth.emailLogin(usuario.correo, usuario.contra).then(() => {
       this.router.navigate(['/home']);
+    }).catch(err => {
+      if(err.message=="Firebase: Error (auth/user-not-found)."){
+        this.toastr.error("El usuario ingresado no existe","Error al iniciar sesión")
+      }
     })
   }
 
@@ -62,7 +68,6 @@ export class LoginComponent implements OnInit {
   buttonVPass() {
     if (this.passLock === true) {
       this.passLock = false;
-      console.log(this.passLock)
     } else {
       this.passLock = true;
     }
