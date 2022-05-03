@@ -10,14 +10,14 @@
             <a class="me-auto"></a> <!-- Esto es para que las opciones del menú se ubiquen al final del navbar -->
             <ul class="navbar-nav  mb-2 mb-lg-0">
                 <!-- Este el es menu del navbar -->
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" id="menuPerfilDropdown" onInit="esto()">
                     <!-- Este el boton de las opciones del Login del menu -->
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" onmouseover="true" 
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'BIZ UDGothic', sans-serif; 
                                 font-family: 'Patrick Hand', cursive; font-size: large; color: #ffffff;">
                         <img style="margin-left:5%" src="./assets/perfil.png" height="30"><!-- Icono de perfil -->
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="estocito">
                         <li *ngIf="validLoging()===false" role="status"><a class="dropdown-item" routerLink="/Login">Iniciar Sesión</a></li>
                         <li *ngIf="validLoging()" role="status"><a class="dropdown-item" routerLink="/Miperfil">Mi perfil</a></li>
                         <li *ngIf="validLoging()" (click)="SignOut()" role="status"><a class="dropdown-item" href="#">Cerrar sesión</a></li>

@@ -20,6 +20,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MiperfilComponent } from './components/miperfil/miperfil.component';
+import { AddproductsComponent } from './components/addproducts/addproducts.component';
+import { MyproductsComponent } from './components/myproducts/myproducts.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { MiperfilComponent } from './components/miperfil/miperfil.component';
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
-    MiperfilComponent
+    MiperfilComponent,
+    AddproductsComponent,
+    MyproductsComponent
   ],
   imports: [
     BrowserModule,
