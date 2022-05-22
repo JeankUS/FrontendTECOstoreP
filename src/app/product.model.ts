@@ -3,4 +3,5 @@ export interface product{
     idProducto:string,
     nombre: string,
     descripcion: string;
+    imagen:string|null
 }

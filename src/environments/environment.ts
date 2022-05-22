@@ -3,6 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+
+  production: false,
   firebase: {
     projectId: 'maquetatecostoredb',
     appId: '1:687565995718:web:e1b2f03dedadebdbebe1c7',
@@ -12,8 +14,7 @@ export const environment = {
     authDomain: 'maquetatecostoredb.firebaseapp.com',
     messagingSenderId: '687565995718',
     measurementId: 'G-MEFXP5P4W1',
-  },
-  production: false
+  }
 };
 
 /*

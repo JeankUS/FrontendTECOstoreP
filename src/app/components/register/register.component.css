@@ -16,11 +16,25 @@
     }
 }
 
-#formRegistrarEmpresa{
-    margin-top:10%;
+#formRegistrarEmpresa {
+    margin-top: 10%;
 }
 
-.buttonDarkGreen{
-    background-color:#34656D; 
+.buttonDarkGreen {
+    background-color: #34656D;
     border-color: #34656D;
+}
+
+/* .form-control:invalid {
+    border-color: red;
+}
+
+.form-control:valid {
+    border-color: green;
+} */
+
+input[type="number"] {
+    -webkit-appearance: textfield !important;
+    margin: 0;
+    -moz-appearance: textfield !important;
 }

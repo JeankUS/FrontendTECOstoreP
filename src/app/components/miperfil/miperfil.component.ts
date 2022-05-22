@@ -42,10 +42,71 @@ export class MiperfilComponent implements OnInit {
     this.getUsuarios();
   }
 
-  volverCarga(){
-    this.editando = false;
-    this.router.navigate(['/Miperfil']);
-    this.getUsuarios();
+  
+
+  async editarEmpresa() {
+    
+    // if (confirm("¿Estas seguro que deseas guardar los cambios?")) {
+      const empresa: any = {
+        nombre: this.editForm.value.nombre,
+        telefono: this.editForm.value.telefono,
+        correo: this.editForm.value.correo,
+        contra: this.editForm.value.contra
+      }
+
+      const q = query(collection(this.firestore, "usuariosI"), where("correo", "==", this.auth.currentUser?.email));
+
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        if (this.auth.currentUser !== null) {
+          for (let i = 0; i < this.empresas.length; i++) {
+            if (this.empresas[i].correo == this.auth.currentUser.email) {
+              this._usuarioService.updateUsuario(doc.id, empresa).then(() => {
+                this.editando = false;
+                this.toastr.info('Empleado modificado con exito', 'Empleado modificado');
+                this.router.navigate(['/Miperfil']);
+                this.editando = false;
+              })
+            }
+          }
+        }
+      });
+
+    // }
+  }
+
+  async eliminarUsuarioEmpresa() {
+    const q = query(collection(this.firestore, "usuariosI"), where("correo", "==", this.auth.currentUser?.email));
+    
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      if (this.auth.currentUser !== null) {
+        for (let i = 0; i < this.empresas.length; i++) {
+          if(this.empresas[i].correo==this.auth.currentUser.email){   
+            this._usuarioService.eliminarUsuario(doc.id).then(() => {
+              this.auth.currentUser?.delete();
+              this.toastr.error('El empleado fue eliminado con éxito', 'Registro eliminado!',{
+                positionClass: 'toast-bottom-right'
+              });
+              this.auth.signOut();
+              this.router.navigate(['/Login'])
+            }).catch(err => {
+              console.log(err)
+            });
+          }
+        }
+      }
+    });
+    
+  }
+
+  //cargas
+  
+  getUsuarios() {
+    this._usuarioService.getUsuarios().subscribe((res: userEmpresa[]) => {
+      this.empresas = res;
+      this.cargaEnMiPerfil();
+    });
   }
 
   cargaEnMiPerfil() {
@@ -101,67 +162,10 @@ export class MiperfilComponent implements OnInit {
     this.editando = true
   }
 
-  async editarEmpresa() {
-    
-    // if (confirm("¿Estas seguro que deseas guardar los cambios?")) {
-      const empresa: any = {
-        nombre: this.editForm.value.nombre,
-        telefono: this.editForm.value.telefono,
-        correo: this.editForm.value.correo,
-        contra: this.editForm.value.contra
-      }
-
-      const q = query(collection(this.firestore, "usuariosI"), where("correo", "==", this.auth.currentUser?.email));
-
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        if (this.auth.currentUser !== null) {
-          for (let i = 0; i < this.empresas.length; i++) {
-            if (this.empresas[i].correo == this.auth.currentUser.email) {
-              this._usuarioService.updateUsuario(doc.id, empresa).then(() => {
-                this.editando = false;
-                this.toastr.info('Empleado modificado con exito', 'Empleado modificado');
-                this.router.navigate(['/Miperfil']);
-                this.editando = false;
-              })
-            }
-          }
-        }
-      });
-
-    // }
-  }
-  async eliminarUsuarioEmpresa() {
-    const q = query(collection(this.firestore, "usuariosI"), where("correo", "==", this.auth.currentUser?.email));
-    
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      if (this.auth.currentUser !== null) {
-        for (let i = 0; i < this.empresas.length; i++) {
-          if(this.empresas[i].correo==this.auth.currentUser.email){        
-            this._usuarioService.eliminarUsuario(doc.id).then(() => {
-              this.auth.currentUser?.delete();
-              this.toastr.error('El empleado fue eliminado con éxito', 'Registro eliminado!',{
-                positionClass: 'toast-bottom-right'
-              });
-              this.auth.signOut();
-              this.router.navigate(['/Login'])
-            }).catch(err => {
-              console.log(err)
-            });
-          }
-        }
-      }
-    });
-    
-  }
-
-
-  getUsuarios() {
-    this._usuarioService.getUsuarios().subscribe((res: userEmpresa[]) => {
-      this.empresas = res;
-      this.cargaEnMiPerfil();
-    });
+  volverCarga(){
+    this.editando = false;
+    this.router.navigate(['/Miperfil']);
+    this.getUsuarios();
   }
 
   //Validaciones

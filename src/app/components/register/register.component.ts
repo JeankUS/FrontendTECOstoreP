@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   //Formularios
   registrarEmpresa: FormGroup;
   //listas
-  empresas: userEmpresa []=[]
+  empresas: userEmpresa[] = []
   //Inicialización de objetos
   usuario: userEmpresa = { idj: '', nombre: '', telefono: '', correo: '', contra: '' };
   //Otros
@@ -43,25 +43,28 @@ export class RegisterComponent implements OnInit {
     this.cargarUsuarios();
   }
   //Carga la lista de empresas con las empresas registradas en la base de datos
-  cargarUsuarios(){
+  cargarUsuarios() {
     this._usuarioService.getUsuarios().subscribe((res: userEmpresa[]) => {
       this.empresas = res;
     });
   }
 
-  
+
   //Permite agregar un usuario empresa
   agregarEmpresa() {
     const usuario: userEmpresa = {
       idj: this.registrarEmpresa.value.idj,
       nombre: this.registrarEmpresa.value.nombre,
       telefono: this.registrarEmpresa.value.telefono,
-      correo: this.registrarEmpresa.value.correo,
+      correo: this.registrarEmpresa.value.correo.toLowerCase(),
       contra: this.registrarEmpresa.value.contra
     }
-
+    const doc = document.getElementById("formRegisterIdJ")
     this.loading = true;
-    if(this.validarIDJ(this.registrarEmpresa.value.idj)==true){
+    if (this.validarIDJ(this.registrarEmpresa.value.idj) == true) {
+      if (doc != null) {
+        doc.style.borderColor="red"
+      }
       if (usuario.contra.length >= 6) {
         this._usuarioService.emailSignUp(usuario.correo, usuario.contra).then(() => {
           this._usuarioService.agregarUsuario(usuario).then(() => {
@@ -86,17 +89,18 @@ export class RegisterComponent implements OnInit {
       } else {
         this.toastr.error('La contraseña ingresada debe ser mayor a 6 carácteres', 'Error al registrarse', { positionClass: 'toast-bottom-right' });
       }
-    }else{
+    } else {
       this.toastr.error('La cédula jurídica ingresada ya existe.', 'Error al registrarse', { positionClass: 'toast-bottom-right' });
       this.loading = false;
     }
+    this.loading = false;
   }
 
-  
+
   //Validaciones
-  validarIDJ(id:string){
+  validarIDJ(id: string) {
     for (let i = 0; i < this.empresas.length; i++) {
-      if(this.empresas[i].idj==id){
+      if (this.empresas[i].idj == id) {
         return false;
       }
     }

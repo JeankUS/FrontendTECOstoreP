@@ -12,24 +12,24 @@
                 <!-- Este el es menu del navbar -->
                 <li class="nav-item dropdown" id="menuPerfilDropdown" onInit="esto()">
                     <!-- Este el boton de las opciones del Login del menu -->
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" onmouseover="true" 
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'BIZ UDGothic', sans-serif; 
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown1" role="button"
+                        (mouseover)="abrirMenu($event)" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" style="font-family: 'BIZ UDGothic', sans-serif; 
                                 font-family: 'Patrick Hand', cursive; font-size: large; color: #ffffff;">
                         <img style="margin-left:5%" src="./assets/perfil.png" height="30"><!-- Icono de perfil -->
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="estocito">
-                        <li *ngIf="validLoging()===false" role="status"><a class="dropdown-item" routerLink="/Login">Iniciar Sesión</a></li>
-                        <li *ngIf="validLoging()" role="status"><a class="dropdown-item" routerLink="/Miperfil">Mi perfil</a></li>
-                        <li *ngIf="validLoging()" (click)="SignOut()" role="status"><a class="dropdown-item" href="#">Cerrar sesión</a></li>
-                        <!-- <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+                        <li *ngIf="validLoging()===false" role="status"><a class="dropdown-item"
+                                routerLink="/Login">Iniciar Sesión</a></li>
+                        <li *ngIf="validLoging()" role="status"><a class="dropdown-item" routerLink="/Miperfil">Mi
+                                perfil</a></li>
+                        <li *ngIf="validLoging()" (click)="SignOut()" role="status"><a class="dropdown-item"
+                                href="#">Cerrar sesión</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
                     <!-- Este el boton de Inicio del menu -->
-                    <a class="nav-link active " aria-current="page" routerLink="/Home" style="font-family: 'BIZ UDGothic', sans-serif; 
+                    <a class="nav-link active" aria-current="page" routerLink="/Home" style="font-family: 'BIZ UDGothic', sans-serif; 
                         font-family: 'Patrick Hand', cursive; font-size: large; color: #ffffff;">Inicio</a>
                 </li>
                 <li class="nav-item">
@@ -44,8 +44,8 @@
                     font-family: 'Patrick Hand', cursive; font-size: large; color: #ffffff;">Acerca de </a>
                 </li>
 
-                
-                
+
+
                 <!-- <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Buscar producto" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Buscar</button>

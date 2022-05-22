@@ -1,1 +1,52 @@
-<p>myproducts works!</p>
+<div class="container" >
+    <div class="row row-cols-1 row-cols-sm-5 row-cols-md-5" *ngIf="misProductos.length >= 1">
+        <div class="col" *ngFor="let producto of misProductos">
+            <div class="card">
+                <div class="card-title">
+                    <h5 style="font-family: 'BIZ UDGothic', sans-serif; 
+                        font-family: 'Patrick Hand', cursive;">{{ producto.nombre }}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="card-text">
+                        <img src="{{producto.imagen}}" alt="pollito">
+                        <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
+                            font-family: 'Patrick Hand', cursive;">{{getDatosEmpresa()}}</h6>
+                        <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
+                            font-family: 'Patrick Hand', cursive;">{{producto.idProducto}}</h6>
+                    </div>
+
+                </div>
+                <div class="align-items-center footerCard">
+                    <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
+                        font-family: 'Patrick Hand', cursive; font-size:x-large">
+                        <i type="button" class="fa-solid fa-edit me-3 iconosSelect"></i>
+                        <i type="button" class="fa-solid fa-trash ms-3 iconosSelect"
+                            (click)="obtenerIdProducto(producto.idProducto)" data-toggle="modal"
+                            data-target="#exampleModal"></i>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Eliminar producto-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar perfil</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Estas seguro que deseas eliminar este producto?
+                Esta acción no tiene retorno.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="botton btnConfimar" (click)="eliminarProducto()"
+                    data-dismiss="modal" >Eliminar</button>
+                <button type="button" class="btn btnCancelar" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

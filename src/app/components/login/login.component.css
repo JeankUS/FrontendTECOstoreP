@@ -16,10 +16,6 @@
     }
 }
 
-.i {
-    -webkit-hyphens: none;
-}
-
 .buttonDarkGreen{
     background-color:#34656D; 
     border-color: #34656D;
@@ -32,4 +28,18 @@
 .letra{
     font-family: 'BIZ UDGothic', sans-serif; 
     font-family: 'Patrick Hand', 'cursive';
+}
+
+.butonHover:hover {
+    border: 1px solid #55A611;
+    background-color: #55A611;
+}
+
+#forgotPass{
+    color:black;
+}
+#forgotPass:hover {
+    /* border: 1px solid #55A611; */
+    
+    color: #55A611;
 }

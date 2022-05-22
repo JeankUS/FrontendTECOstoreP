@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
+import { delay } from 'rxjs';
 import { GlobalVars } from 'src/app/common/global-vars';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -16,41 +17,60 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.validLoging();
   }
-
-  esto() {
-    // var myDropdown = document.getElementById('navbarDropdown')
-    // if (myDropdown!=null){
-    //   myDropdown.addEventListener('show.bs.dropdown', function onmouseover(event) {
-    //     console.log("Waao")
-    //   })
-    // }
-    // return true
-
+  cerrarMenu(event: any) {
+    const navbarSupportedContent = document.getElementById("navbarSupportedContent")
     const menuPerfilDropdown = document.getElementById("menuPerfilDropdown")
-    const o = document.getElementById("navbarDropdown")
-    if (menuPerfilDropdown !== null) {
-      if (menuPerfilDropdown.className == "nav-item dropdown") {
-        menuPerfilDropdown.className = "nav-item dropdown show";
+    const navbarDropdown1 = document.getElementById("navbarDropdown1")
+    const otro = document.getElementById("estocito")
+    if (navbarSupportedContent != null) {
+      if (menuPerfilDropdown !== null) {
+        menuPerfilDropdown.className = "nav-item dropdown";
 
         console.log(menuPerfilDropdown.className)
-        if (o != null) {
-          if (o.onmouseover != null) {
-            o.ariaExpanded = "true"
-            console.log(o.ariaExpanded)
-            return true;
-          }
-        }
-      } else if (menuPerfilDropdown.className == "nav-item dropdown show") {
-        menuPerfilDropdown.className = "nav-item dropdown";
-        if (o != null) {
-          if (o.onmouseover != null) {
-            o.ariaExpanded = "false"
-            console.log(o.ariaExpanded)
-            return true;
+        if (navbarDropdown1 != null) {
+          navbarDropdown1.ariaExpanded = "false"
+          if (otro != null) {
+            otro.className = "dropdown-menu"
+            return false;
           }
         }
       }
-    } return true;
+    }
+    return true;
+  }
+  abrirMenu(event: any) {
+    // const menuPerfilDropdown = document.getElementById("menuPerfilDropdown")
+    // const navbarDropdown1 = document.getElementById("navbarDropdown1")
+    // const otro = document.getElementById("estocito")
+    // if (menuPerfilDropdown !== null) {
+    //   if (menuPerfilDropdown.className == "nav-item dropdown") {
+    //     menuPerfilDropdown.className = "nav-item dropdown show";
+    //     console.log(menuPerfilDropdown.className, "fuck")
+    //     if (navbarDropdown1 != null) {
+    //       navbarDropdown1.ariaExpanded = "true"
+    //       if (otro != null) {
+    //         otro.className = "dropdown-menu show"
+    //       }
+    //     }
+    //   }
+    // }
+
+    // setTimeout(function () {
+    //   if (menuPerfilDropdown !== null) {
+    //     if (menuPerfilDropdown.className == "nav-item dropdown show") {
+    //       menuPerfilDropdown.className = "nav-item dropdown";
+    //       console.log(menuPerfilDropdown.className)
+    //       if (navbarDropdown1 != null) {
+    //         navbarDropdown1.ariaExpanded = "false"
+    //         if (otro != null) {
+    //           otro.className = "dropdown-menu"
+    //         }
+    //       }
+    //     }
+    //   }
+    // }, 3000);
+    // console.log("I am the second log");
+
   }
 
   validLoging() {

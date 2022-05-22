@@ -5,7 +5,7 @@
     /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #FFC837, #FF8008);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    border-radius:10%;
+    border-radius: 10%;
 
 }
 
@@ -37,17 +37,26 @@
 }
 
 .letrita {
-    font-family: 'BIZ UDGothic',sans-serif;
+    font-family: 'BIZ UDGothic', sans-serif;
     font-family: 'Patrick Hand', cursive;
     font-size: large;
 }
 
 .inputEdit {
     border-color: #34656D;
+    /* width: 320px; */
+    width: 75%;
+    border-radius: 5px;
 }
+
 
 .btnConfimar {
     background-color: #34656D;
+    color: white;
+}
+
+.btnCancelar {
+    background-color: #4b5253;
     color: white;
 }
 
@@ -57,4 +66,46 @@
 
 .card {
     border: none;
+}
+
+
+
+.botton{
+    border: 1px solid #34656D;
+    border-radius: 5px;
+    padding: 7px;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.botton:hover{
+    /* animation: ; */
+    border: 1px solid #F6185F;
+    background-color: #F6185F;
+    
+}
+
+.btn-close:hover{
+    /* animation: ; */
+    border: 1px solid #F6185F;
+    color: #F6185F;
+    
+}
+.green:hover {
+    /* border: 1px solid #55A611; */
+    color: #55A611;
+    font-size: 1.8rem;
+}
+.red:hover {
+    /* border: 1px solid #F6185F; */
+    color: #F6185F;
+    font-size: 1.8rem;
+}
+
+.i{
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn:hover {
+    border: 1px solid #55A611;
+    background-color: #55A611;
 }

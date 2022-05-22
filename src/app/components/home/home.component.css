@@ -4,3 +4,89 @@ background: -webkit-linear-gradient(to right, #F8CDDA, #1D2B64);  /* Chrome 10-2
 background: linear-gradient(to right, #F8CDDA, #1D2B64); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ 
 background-size: cover;
 } */
+
+/* .input{
+ background-color: aqua;
+}
+
+.form-control:invalid{
+    border-color: red;
+}
+
+.form-control:valid{
+    border-color: green;
+} */
+
+.styleWord{
+    font-family: 'BIZ UDGothic',sans-serif;
+    font-family: 'Patrick Hand', cursive;
+}
+
+.style-select{
+    padding: 2px;
+    
+}
+
+/* .style-select:hover{
+    
+} */
+
+.divSearch{
+    margin-top:10px;
+}
+
+.buttonSeach{
+    background-color:#6BD000;
+    border: 1px solid ;
+    border-radius: 3px;
+}
+
+.buttonSeach:hover{
+    background-color:#34656D;
+    color: white;
+    border: 1px;
+}
+
+.letrita {
+    font-family: 'BIZ UDGothic',sans-serif;
+    font-family: 'Patrick Hand', cursive;
+    font-size: large;
+}
+
+div {
+    animation-name: 'nombre-fotograma-clave';
+    animation-duration: 45s;
+    animation-iteration-count: 10;
+ }
+
+ @keyframes movimiento-diagonal {
+    from {
+       left: 0;
+       top: 0;
+    }
+    to {
+       left: 100px;
+       top: 100px;
+    }
+ }
+
+ .navbar .nav-item:not(:last-child) {
+    margin-right: 35px;
+  }
+   
+  .dropdown-toggle::after {
+     transition: transform 0.15s linear; 
+  }
+   
+  .show.dropdown .dropdown-toggle::after {
+    transform: translateY(3px);
+  }
+
+  .dropdown-menu {
+    margin-top: 0;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /*remove the gap so it doesn't close*/
+ }
