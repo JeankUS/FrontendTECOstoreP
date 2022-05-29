@@ -3,7 +3,8 @@
     content: "";
     flex: 1;
     height: 1px;
-    background: #eee;
+    background: #34656D;
+    color: #34656D;
 }
 
 .h-custom {
@@ -15,26 +16,27 @@
         height: 100%;
     }
 }
-.probando{
+
+.probando {
     background-color: #34656D;
     display: flex;
     height: 50px;
     border: none;
-    margin-top:10%;
+    margin-top: 10%;
 }
 
-.posi{
+.posi {
     /* tamaño */
 
-    width:20%;
-    height:20%;
+    width: 20%;
+    height: 20%;
     background-color: aqua;
 
-    margin-top:5%;
+    margin-top: 5%;
 }
 
 .letrita {
-    font-family: 'BIZ UDGothic',sans-serif;
+    font-family: 'BIZ UDGothic', sans-serif;
     font-family: 'Patrick Hand', cursive;
     font-size: large;
 }
@@ -56,32 +58,123 @@
     border: none;
 }
 
-#inputGroupFile01{
-    display:none;
+#inputGroupFile01 {
+    display: none;
     width: 5rem;
 }
 
-#divInputImg{
+#divInputImg {
     max-width: 5rem;
 }
 
-.labelInputFile{
-    position: absolute;
-    width:4rem;
-    height:4rem;
-    background-color:white;
-    border-radius: 100%;
-    cursor:pointer;
+#iconUpload {
+    font-size: 3rem;
+}
+
+#divInputImg {
+    align-items: center;
+    /* background-color:#34656D; */
+}
+
+.label {
+    /* position: absolute; */
+    display: block;
+    width: 4rem;
+    height: 4rem;
+    margin-left: 2rem;
+    background-color: #34656D;
+    border-radius: 50px 50px 50px 50px;
+    cursor: pointer;
     user-select: none;
     /* padding:1rem; */
-    /* box-shadow: 0 0 10px -1px gray; */
 }
-.labelInputFile:active{
+
+.labelInputFile {
+    margin-right: 1rem ;
+    margin-left: auto;
+    transition: transform 0.6s
+}
+.labelInputFile i{
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.labelInputFile:hover {
+    transform: scale(1.1)
+}
+
+.labelInputFile:active {
     transform: scale(0.9);
 }
 
-.labelInputFile img{
-margin-left: 0.3rem;
-   width:3rem;
-   height: 3rem;
+
+
+.inputs {
+    display: inline-block;
+}
+
+#imagenProducto {
+    position: sticky;
+    margin-left: 30%;
+    width: 15rem;
+    height: 15rem;
+}
+
+.spinner-grow-box {
+    /* position: static; */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#divInputImg {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn:hover {
+    border: 1px solid #55A611;
+    background-color: #55A611;
+}
+
+@keyframes flotante {
+    from {
+        transform: scale(1);
+        box-shadow: 0rem 0rem 0rem;
+    }
+
+    to {
+        transform: scale(1.1);
+        box-shadow: 0.50rem 0.75rem 1rem black;
+    }
+}
+
+.back-come button {
+    display: block;
+    color: #fff;
+    position: fixed;
+    left: 2rem;
+    bottom: 2rem;
+    text-align: center;
+    z-index: 999;
+    padding: .50rem;
+    border: 2px solid transparent;
+    color: white;
+    background-color: rgba(52, 101, 109);
+    border-radius: 50px;
+    animation-name: flotante;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+}
+
+.back-come button:hover {
+    /* animation: none; */
+    background-color: #55A611;
+}
+
+.back-come button:active {
+    transform: scale(0.9);
+    box-shadow: 0rem 0rem 0rem;
+    animation: none;
 }

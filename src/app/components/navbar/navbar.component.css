@@ -1,11 +1,20 @@
-.dropdown:hover .dropdown-menu { /*Funcion para abrir el navbar con un hover */
+.dropdown {
+    transition: all 0.5s
+}
+
+.dropdown:hover .dropdown-menu {
+    /*Funcion para abrir el navbar con un hover */
     display: block;
     margin-top: 0;
     /*// remove the gap so it doesn't close */
 }
 
-.nav-item:hover{
+.nav-item{
+    transition: all 0.5s
+}
+
+.nav-item:hover {
     background-color: #4F99A6;
-    border: 1px solid #4F99A6;
-    border-radius:5px;
+    border: 0px solid #4F99A6;
+    border-radius: 5px;
 }

@@ -1,0 +1,15 @@
+/* .form-control:visited {
+    background-color: black;
+}
+
+.form-control:valid {
+    border-color: green;
+}
+
+input:required:invalid {
+    border-color: #C00000;
+  } */
+
+input::selection{
+    border-color: red;
+}

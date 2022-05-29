@@ -7,7 +7,7 @@
 }
 
 .h-custom {
-    height: calc(100% - 73px);
+    height: calc(100% - 150px);
 }
 
 @media (max-width: 450px) {
@@ -16,30 +16,203 @@
     }
 }
 
-.buttonDarkGreen{
-    background-color:#34656D; 
-    border-color: #34656D;
+
+.title-page {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
 }
 
-.loginButton{
-    padding-left: 2.5rem; padding-right: 2.5rem;
+.title-page span {
+    font-family: 'New Tegomin', serif;
+    font-size: xx-large;
 }
 
-.letra{
-    font-family: 'BIZ UDGothic', sans-serif; 
-    font-family: 'Patrick Hand', 'cursive';
+.divider {
+    margin-left: auto;
+    margin-right: auto;
+    content: "";
+    flex: 1;
+    width: 80%;
+    height: 1px;
+    background: #34656D;
+    margin-bottom: 3%;
 }
 
-.butonHover:hover {
-    border: 1px solid #55A611;
-    background-color: #55A611;
+@keyframes spanError {
+
+    /* from {
+        bottom: -25%;
+    }
+
+    to {
+        bottom: 0%;
+    } */
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1)
+    }
 }
 
-#forgotPass{
-    color:black;
+.div-span-error {
+    justify-content: center;
+    text-align: center;
+    left: 42.5%;
+    margin-top: 5%;
+    width: 20%;
+    width: max-content;
+    padding: 0 2% 0px 2%;
+    background: #ff000067;
+    border: 1px solid rgba(255, 0, 0, 0.2);
+    border-radius: 25px;
+    margin-bottom: 1%;
+    animation-name: spanError;
+    animation-duration: 1s;
+
+
+    display: block;
+    position: fixed;
 }
-#forgotPass:hover {
-    /* border: 1px solid #55A611; */
-    
-    color: #55A611;
+
+
+.div-span-error #span-error {
+    margin-right: auto;
+    margin-left: auto;
 }
+
+
+
+@keyframes iniciar {
+    from {
+        top: -25%;
+    }
+
+    to {
+        top: 0%;
+    }
+}
+
+.card {
+    border: none;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    /* background-color: rgba(52, 101, 109, 0.8); */
+    height: 25rem;
+    /* cursor: pointer; */
+    user-select: none;
+    /* border: none; */
+    border-radius: 25px;
+    animation-name: iniciar;
+    animation-duration: 0.7s;
+}
+
+
+
+.card-body {
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid #34656D;
+    border-radius: 25px 0 25px 0;
+    width: 80%;
+    text-align: center;
+    background-color: #ffffff;
+    /* animation-name: borderCard; */
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.card-title {
+    width: max-content;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 5%;
+}
+
+i {
+    color: #34656D;
+}
+
+.buttonDarkGreen {
+    background-color: #34656D;
+    border: none;
+}
+
+.buttonDarkGreen:hover {
+    background-color: #4CAF50;
+    border: none;
+}
+
+#buttonBlock {
+    transition: color 0.25s, background-color 0.25;
+}
+
+#buttonBlock:hover {
+    background-color: #4CAF50;
+
+}
+
+#buttonBlock:hover>i {
+    color: #fff;
+}
+
+.loader {
+    width: 100px;
+    height: 50px;
+    color: #34656D;
+    display: block;
+    margin-bottom: 5%;
+    /* position: absolute; */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loader div {
+    overflow: hidden;
+    border: 8px solid #34656D;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    /* padding: 0 10px 0 10px; */
+    height: 50px;
+    background-color: white;
+    transform: scale(0.6);
+}
+
+.loader div div {
+    width: 70%;
+    border: none;
+    border-radius: 10px;
+    height: 80%;
+    background-color: red;
+    animation: loader 1.9s infinite;
+
+}
+
+/* .loader div div:nth-child(2) {
+    animation-delay: s;
+} */
+
+
+@keyframes loader {
+    from {
+        margin-left: -100%;
+        background-color: #A00F3D;
+    }
+
+    50% {
+        background-color: #FFA500;
+    }
+
+    to {
+        margin-left: 100%;
+        background-color: #71D20C;
+    }
+}
+
+/*  */

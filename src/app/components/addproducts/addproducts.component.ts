@@ -30,7 +30,7 @@ export class AddproductsComponent implements OnInit {
   usuario: userEmpresa = { idj: '', nombre: '', telefono: '', correo: '', contra: '' };
 
 
-  producto: product = { idEmpresa: '', idProducto: '', nombre: '', descripcion: '', imagen: '' }
+  producto: product = { nombreEmpresa: '', idProducto: '', nombre: '', categoria: '', descripcion: '', imagen: '' }
 
   constructor(
     private router: Router,
@@ -44,6 +44,7 @@ export class AddproductsComponent implements OnInit {
     this.registerProducto = this.fb.group({
       idProducto: ['', Validators.required],
       nombre: ['', Validators.required],
+      categoria: ['',Validators.required],
       descripcion: ['', Validators.required]
     })
   }
@@ -55,12 +56,15 @@ export class AddproductsComponent implements OnInit {
 
 
   uploadImgStorage(event: any) {
-    let idGenerated = Math.random().toString(36).substring(2, 32)
-    this.imagenes = []
+    let idGenerated = Math.random().toString(36).substring(2, 32)                             //genera un id random para la dirección url de la imagen
+    this.esteUrlImagen = 'cargando'
     let archivos = event.target.files
     let reader = new FileReader();
     this.mostrarImagen = true
     reader.readAsDataURL(archivos[0]);
+    if(archivos[0]==null){
+      this.mostrarImagen = false
+    }
     reader.onloadend = () => {
       // console.log(reader.result)
       this.imagenes.push(reader.result)
@@ -69,10 +73,6 @@ export class AddproductsComponent implements OnInit {
         this.toastr.success('La imagen se ha cargado exitosamente.', 'Imagen cargada', { positionClass: 'toast-bottom-right' });
       });
     }
-  }
-
-  aviso(){
-    this.toastr.info('Aún no se han completado la carga de atributos.', 'Info', { positionClass: 'toast-bottom-right' });
   }
 
   getUsuarios() {
@@ -91,34 +91,38 @@ export class AddproductsComponent implements OnInit {
     if (this.auth.currentUser != null) {
       for (let i = 0; i < this.empresas.length; i++) {
         if (this.empresas[i].correo == this.auth.currentUser.email) {
-          return this.empresas[i].idj
+          return this.empresas[i].nombre
         }
       }
     } return null
   }
 
   agregarProducto() {
+    if (this.esteUrlImagen != null && this.esteUrlImagen != '' && this.esteUrlImagen != 'cargando') {
+      var nE = this.buscarIDEmpresa();
+      if (nE != null) {
+        const producto: product = {
+          nombreEmpresa: String(nE),
+          idProducto: this.registerProducto.value.idProducto,
+          nombre: this.registerProducto.value.nombre,
+          categoria: this.registerProducto.value.categoria.toLowerCase(),
+          descripcion: this.registerProducto.value.descripcion,
+          imagen: this.esteUrlImagen
+        }
+        this.loading = true;
+        
+        this._productsService.agregarProducto(producto).then(() => {
+          this.loading = false;
+          this.toastr.success('El producto fue registrado con éxito.', 'Producto Registrado', { positionClass: 'toast-bottom-right' });
+          this.router.navigate(['/Miperfil']);
 
-    var idj = this.buscarIDEmpresa();
-    if (idj != null) {
-      const producto: product = {
-        idEmpresa: String(idj),
-        idProducto: this.registerProducto.value.idProducto,
-        nombre: this.registerProducto.value.nombre,
-        descripcion: this.registerProducto.value.descripcion,
-        imagen: this.esteUrlImagen
+        }).catch(err => {
+          console.log(err);
+        })
       }
-      this.loading = true;
-      // console.log(idj)
-      this._productsService.agregarProducto(producto).then(() => {
-        this.loading = false;
-        console.log(producto)
-        this.toastr.success('El producto fue registrado con éxito.', 'Producto Registrado', { positionClass: 'toast-bottom-right' });
-        this.router.navigate(['/Miperfil']);
 
-      }).catch(err => {
-        console.log(err);
-      })
+    } else {
+      this.toastr.info('Aún no se han completado la carga de atributos.', 'Info', { positionClass: 'toast-bottom-right' });
     }
 
 

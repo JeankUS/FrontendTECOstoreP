@@ -1,24 +1,37 @@
-<div class="container" >
+<!-- <div class="title-container"> -->
+<div class="title-page">
+    <span></span>
+    <span>Mis productos</span>
+</div>
+<!-- </div> -->
+
+<div class="divider d-flex align-items-center my-4">
+
+</div>
+<div class="emptyList" *ngIf="misProductos.length == 0">
+    <span>No existen productos registrados</span>
+</div>
+<div class="container">
     <div class="row row-cols-1 row-cols-sm-5 row-cols-md-5" *ngIf="misProductos.length >= 1">
-        <div class="col" *ngFor="let producto of misProductos">
+        <div class="col" *ngFor="let producto of misProductos | paginate: { itemsPerPage: 10, currentPage: pages }">
             <div class="card">
                 <div class="card-title">
                     <h5 style="font-family: 'BIZ UDGothic', sans-serif; 
-                        font-family: 'Patrick Hand', cursive;">{{ producto.nombre }}</h5>
+                            font-family: 'Patrick Hand', cursive;">{{ producto.nombre }}</h5>
                 </div>
                 <div class="card-body">
                     <div class="card-text">
                         <img src="{{producto.imagen}}" alt="pollito">
                         <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
-                            font-family: 'Patrick Hand', cursive;">{{getDatosEmpresa()}}</h6>
+                                font-family: 'Patrick Hand', cursive;">{{producto.nombreEmpresa}}</h6>
                         <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
-                            font-family: 'Patrick Hand', cursive;">{{producto.idProducto}}</h6>
+                                font-family: 'Patrick Hand', cursive;">{{producto.idProducto}}</h6>
                     </div>
 
                 </div>
                 <div class="align-items-center footerCard">
                     <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
-                        font-family: 'Patrick Hand', cursive; font-size:x-large">
+                            font-family: 'Patrick Hand', cursive; font-size:x-large">
                         <i type="button" class="fa-solid fa-edit me-3 iconosSelect"></i>
                         <i type="button" class="fa-solid fa-trash ms-3 iconosSelect"
                             (click)="obtenerIdProducto(producto.idProducto)" data-toggle="modal"
@@ -27,9 +40,26 @@
                 </div>
             </div>
         </div>
+
+    </div>
+
+</div>
+<div class="background-pagination" *ngIf="misProductos.length >= 1">
+    <div class="divPagination">
+        <pagination-controls class="my-pagination" [maxSize]='7' previousLabel="" nextLabel=""
+            (pageChange)="pages = $event">
+        </pagination-controls>
     </div>
 </div>
 
+<div class="back-come">
+    <button type="button" routerLink="/Miperfil"><i class="fa fa-user"></i> Mi perfil</button>
+</div>
+<!-- <div class="btn-whatsapp">
+    <a href="https://api.whatsapp.com/send?phone=85793037" target="_blank">
+        <img src="http://s2.accesoperu.com/logos/btn_whatsapp.png" alt="">
+    </a>
+</div> -->
 <!-- Modal Eliminar producto-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -44,7 +74,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="botton btnConfimar" (click)="eliminarProducto()"
-                    data-dismiss="modal" >Eliminar</button>
+                    data-dismiss="modal">Eliminar</button>
                 <button type="button" class="btn btnCancelar" data-dismiss="modal">Cancelar</button>
             </div>
         </div>

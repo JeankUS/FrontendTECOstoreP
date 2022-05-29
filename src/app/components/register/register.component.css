@@ -1,10 +1,16 @@
-.divider:after,
-.divider:before {
+/* .divider2 {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.divider2:after,
+.divider2:before {
     content: "";
     flex: 1;
     height: 1px;
-    background: #eee;
-}
+    background: #34656D;
+} */
 
 .h-custom {
     height: calc(100% - 73px);
@@ -16,25 +22,255 @@
     }
 }
 
-#formRegistrarEmpresa {
+.card{
+    border: none;
+}
+
+.card-title{
+    margin-bottom: 2%!important;
+}
+
+.title-page {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.title-page span {
+    font-family: 'New Tegomin', serif;
+    font-size: xx-large;
+}
+
+.divider {
+    margin-left: auto;
+    margin-right: auto;
+    content: "";
+    flex: 1;
+    width: 80%;
+    height: 1px;
+    background: #34656D;
+    margin-bottom: 3%;
+}
+
+@keyframes spanError {
+    /* from {
+        bottom: -25%;
+    }
+
+    to {
+        bottom: 0%;
+    } */
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1)
+    }
+}
+
+.div-span-error{
+    justify-content: center;
+    text-align: center;
+    left: 39.5%;
+    margin-top: 5%;
+    width: 20%;
+    width: max-content;
+    padding:0 5% 0px 5%;
+    background: #ff000067;
+    border: 1px solid rgba(255, 0, 0, 0.2) ;
+    border-radius:25px;
+    margin-bottom: 1%;
+    animation-name: spanError;
+    animation-duration: 2s;
+
+    
+    display: block;
+    position: fixed;
+}
+
+
+.div-span-error #span-error{
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.div-span-info{
+    justify-content: center;
+    text-align: center;
+    right: 12%;
+    margin-top: 8%;
+    width: max-content;
+    height: 30%;
+    width: max-content;
+    /* padding:0 5% 0px 5%; */
+    background: #ff000067;
+    border: 1px solid rgba(255, 0, 0, 0.2) ;
+    border-radius:25px;
+    margin-bottom: 1%;
+    animation-name: spanError;
+    animation-duration: 2s;
+
+    
+    display: block;
+    position: fixed;
+}
+
+.div-span-info-title {
+    
+    width:max-content;
+    /* background-color:red */
+}
+
+.div-span-info div{
+    justify-content: center;
+    background-color:red;
+    margin-top: 4%;
+    width:100%;
+    margin-bottom: 1%;
+    text-align: center;
+}
+
+.div-span-info #span-error{
+    justify-content: center;
+    margin-top: 4%;
+    margin-left: 1%;
+    margin-bottom: 0%;
+}
+
+
+@keyframes iniciar {
+    from {
+        top: -25%;
+    }
+
+    to {
+        top: 0%;
+    }
+}
+
+.card {
     margin-top: 10%;
+    margin-left: auto;
+    margin-right: 10%;
+    width: max-content;
+    /* background-color: rgba(52, 101, 109, 0.8); */
+    height: 25rem;
+    /* cursor: pointer; */
+    user-select: none;
+    /* border: none; */
+    border-radius: 25px;
+    animation-name: iniciar;
+    animation-duration: 0.7s;
 }
 
-.buttonDarkGreen {
+
+
+.card-body {
+    border: 1px solid #34656D;
+    border-radius: 25px 0 25px 0;
+    text-align: center;
+    background-color: #ffffff;
+    /* animation-name: borderCard; */
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.card-title {
+    width: max-content;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 5%;
+}
+
+i {
+    color: #34656D;
+}
+
+button[type="submit"] {
     background-color: #34656D;
-    border-color: #34656D;
+    border: none;
 }
 
-/* .form-control:invalid {
-    border-color: red;
+button[type="submit"]:hover {
+    background-color: #4CAF50;
+    border: none;
 }
 
-.form-control:valid {
-    border-color: green;
+#buttonBlock:hover{
+    background-color:#4CAF50;
+    
+}
+#buttonBlock:hover>i{
+    color: #fff;
+}
+
+.loader {
+    width: 100px;
+    height: 50px;
+    color: #34656D;
+    display: block;
+    margin-bottom: 5%;
+    /* position: absolute; */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loader div {
+    overflow: hidden;
+    border: 8px solid #34656D;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    /* padding: 0 10px 0 10px; */
+    height: 50px;
+    background-color: white;
+    transform: scale(0.6);
+}
+
+.loader div div {
+    width: 70%;
+    border: none;
+    border-radius: 10px;
+    height: 80%;
+    background-color: red;
+    animation: loader 1.9s infinite;
+
+}
+
+/* .loader div div:nth-child(2) {
+    animation-delay: s;
 } */
 
-input[type="number"] {
-    -webkit-appearance: textfield !important;
-    margin: 0;
-    -moz-appearance: textfield !important;
+
+@keyframes loader {
+    from {
+        margin-left: -100%;
+        background-color: #A00F3D;
+    }
+    50%{
+        background-color: #FFA500;
+    }
+    to {
+        margin-left: 100%;
+        background-color: #71D20C;
+    }
+}
+
+.col1{
+    width: 80%
+}
+
+.col2{
+    width: 20%
+}
+
+/* Models de errores */
+.div-span-error-i{
+    width:max-content;
+    background-color: #ff000067;
+    border: 1px solid #ff000067;
+    border-radius: 0 0 10px 10px;
+
 }

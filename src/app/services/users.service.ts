@@ -45,6 +45,7 @@ export class UsersService {
       credential.user, { displayName: credential.user.displayName }
     );
   }
+  
   updateUsuario(id:string, usuario: any): Promise<any> {
     const userDocRef = doc(this.firestore, 'usuariosI/'+id);
     return updateDoc(userDocRef, usuario);

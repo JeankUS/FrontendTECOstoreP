@@ -25,10 +25,10 @@
                         <div class="divider d-flex align-items-center my-4">
                             <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
                             font-family: 'Patrick Hand', cursive; font-size:x-large">
-                                <i type="button" class="fa-solid fa-edit me-3 iconosSelect green"
+                                <i type="button" class="fa-solid fa-edit me-3" id="iGreen"
                                     (click)="cargarEditarPerfil()"></i>
-                                <i type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                    class="fa-solid fa-trash ms-3 iconosSelect red"></i>
+                                <i type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" id="iRed"
+                                    class="fa-solid fa-trash ms-3"></i>
                             </p>
                         </div>
                     </div>
@@ -65,14 +65,17 @@
                         <div class="divider d-flex align-items-center my-4">
                             <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
                             font-family: 'Patrick Hand', cursive; font-size:x-large">
-                                <i type="button" class="fa-solid fa-arrow-left me-3 iconosSelect red"
-                                    (click)="volverCarga()"></i>
-                                <i type="button" class="fa-solid fa-check ms-3 iconosSelect green" data-toggle="modal"
-                                    data-target="#exampleModal"></i>
+                                <button type="button" class="btn btnConfimar ms-3" data-toggle="modal"
+                                    data-target="#exampleModal">Agregar</button>
+                                <button type="button" class="btn btnConfimar ms-3" (click)="volverCarga()">
+                                    Cancelar</button>
+                                <!-- Agrega los productos a firebase -->
+
+
                             </p>
                         </div>
                         <!-- Modal Editar Empresa-->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        <div class=" modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">

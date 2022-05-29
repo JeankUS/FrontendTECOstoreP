@@ -8,6 +8,7 @@ import { Auth } from '@angular/fire/auth';
 import { Firestore, addDoc, collection, collectionData, doc, docData, deleteDoc, updateDoc, DocumentReference, setDoc, query, where, getDocs } from '@angular/fire/firestore';
 import { ToastrService } from 'ngx-toastr';
 import { userEmpresa } from 'src/app/usuarioEmpresa.model';
+import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
 // import { AngularFireAuth } from '@angular/fire/compat/auth';
 // import firebase from 'firebase/compat/app';
 @Component({
@@ -17,8 +18,7 @@ import { userEmpresa } from 'src/app/usuarioEmpresa.model';
 })
 export class LoginComponent implements OnInit {
   //Formularios
-  loginForm: FormGroup;
-
+  loginForm!: FormGroup;
   //listas
   empresas: userEmpresa[] = []
   //Inicialización de objetos
@@ -29,8 +29,9 @@ export class LoginComponent implements OnInit {
 
   //Otros
   passLock = true;
-
-  //Constructor+
+  emptyForm = false;
+  emptyPattern = false;
+  //Constructor
   constructor(
     private firestore: Firestore,
     private router: Router,
@@ -38,15 +39,17 @@ export class LoginComponent implements OnInit {
     private _serviceAuth: AuthService,
     private _userService: UsersService,
     private toastr: ToastrService,
-    private auth: Auth) {
-    this.loginForm = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
-    })
-  }
+    private auth: Auth) { }
 
 
   ngOnInit(): void {
+    this.loginForm = this.initForm();
+  }
+  initForm(): FormGroup {
+    return this.fb.group({
+      email: ['', [Validators.required, Validators.pattern("[A-Za-z]*")]],
+      password: ['', [Validators.required]]
+    })
   }
 
   getUsuarios() {
@@ -57,6 +60,7 @@ export class LoginComponent implements OnInit {
 
   loginWithEmail() {
     this.getUsuarios()
+    this.validarInputsVacios()
     const usuario: login = {
       correo: this.loginForm.value.email,
       contra: this.loginForm.value.password
@@ -101,5 +105,34 @@ export class LoginComponent implements OnInit {
     } else {
       this.passLock = true;
     }
+  }
+
+  validarInputsVacios() {
+    const email = document.getElementById("email")
+    const password = document.getElementById("password")
+    let self = this
+    let identificadorIntervaloDeTiempo;
+    if (email != null && password != null) {
+      console.log(self.loginForm.get('email')?.hasError('pattern'))
+
+      function repetirCadaSegundo() {
+        identificadorIntervaloDeTiempo = setInterval(ver, 100);
+      }
+      repetirCadaSegundo()
+
+      function ver() {
+        if (!self.loginForm.get('email')?.hasError('pattern')) {
+          self.emptyPattern = true;
+        } else {
+          self.emptyPattern = false;
+        }
+        if (self.loginForm.get('email')?.value == '' || self.loginForm.get('password')?.value == '') {
+          self.emptyForm = true;
+        } else {
+          self.emptyForm = false;
+        }
+      }
+    }
+
   }
 }

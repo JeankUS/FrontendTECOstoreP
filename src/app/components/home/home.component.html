@@ -1,0 +1,47 @@
+<div class="title-page">
+    <span>Todos los productos</span>
+</div>
+
+<div class="divider"></div>
+
+<div class="emptyList" *ngIf="productos.length == 0">
+    <span>No existen productos registrados</span>
+</div>
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-sm-5 row-cols-md-5" *ngIf="productos.length >= 1">
+        <div class="col" *ngFor="let producto of productos | paginate: { itemsPerPage: 10, currentPage: pages }">
+            <div class="card">
+                <!-- Titulo -->
+                <div class="card-title">
+                    <h5 style="font-family: 'BIZ UDGothic', sans-serif; 
+                            font-family: 'Patrick Hand', cursive;">{{ producto.nombre }}</h5>
+                </div>
+                <!-- Atributos e imagen -->
+                <div class="card-body">
+                    <div class="card-text">
+                        <img src="{{producto.imagen}}" alt="pollito">
+                        <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
+                                font-family: 'Patrick Hand', cursive;">{{producto.nombreEmpresa}}</h6>
+                        <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
+                                font-family: 'Patrick Hand', cursive;">{{producto.idProducto}}</h6>
+                    </div>
+
+                </div>
+                <!-- Footer  -->
+                <div class="align-items-center footerCard">
+                    <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
+                            font-family: 'Patrick Hand', cursive; font-size:x-large">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="background-pagination" *ngIf="productos.length >= 1">
+    <div class="divPagination">
+        <pagination-controls class="my-pagination" [maxSize]='7' previousLabel="" nextLabel=""
+            (pageChange)="pages = $event">
+        </pagination-controls>
+    </div>
+</div>

@@ -1,77 +1,101 @@
 <section class="vh-100">
     <div class="container-fluid h-custom">
-        <div class="row d-flex justify-content-center align-items-center" style="margin-top:5%">
+        <div class="row d-flex justify-content-center align-items-center" style="margin-top:2rem">
             <div class="col-xl-4">
                 <div class="divider d-flex align-items-center my-4">
                     <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
                     font-family: 'Patrick Hand', cursive; font-size:x-large">Agregar producto</p>
                 </div>
                 <form class="mx-1 mx-md-4" [formGroup]="registerProducto" (ngSubmit)="agregarProducto()"
-                    style="margin-top:10%">
-                    <!-- ID -->
-                    <div class="d-flex flex-row align-items-center mb-4">
-                        <i class="fas fa-clipboard fa-lg me-3 fa-fw"></i>
+                    style="margin-top:2rem">
+                    <!-- ID y nombre-->
+                    <div class="d-flex flex-row align-items-center mb-4" id="idProductoAdd">
+                        <i class="fas fa-clipboard fa-lg me-1 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
-                            <div class="input-group ms-1" style="width:99%;">
-                                <input type="text" id="formRegisterIDproduct" class="form-control"
+                            <div class="input-group ms-1">
+                                <input type="text" id="formRegisterIDproduct" class="form-control" 
                                     formControlName="idProducto" placeholder="ID Producto" />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Nombre -->
-                    <div class="d-flex flex-row align-items-center mb-4">
-                        <i class="fas fa-file-signature fa-lg me-3 fa-fw"></i>
-                        <div class="form-outline flex-fill mb-0">
-                            <div class="input-group ms-1" style="width:99%;">
+                                <!-- <span class="input-group-text"><i class="fas fa-file-signature fa-lg"></i></span> -->
                                 <input type="text" id="formRegisterNombre" class="form-control" formControlName="nombre"
-                                    placeholder="Nombre" />
+                                     placeholder="Nombre" />
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="d-flex flex-row align-items-center mb-4" id="idProductoAdd">
+                        <i class="fas fa-clipboard fa-lg me-1 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <div class="input-group ms-1">
+                                <input type="text" id="formRegisterCategoria" class="form-control" formControlName="categoria"
+                                     placeholder="Categoría" />
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Descripción -->
                     <div class="d-flex flex-row align-items-center mb-4">
-                        <i class="fas fa-file-lines fa-lg me-3 fa-fw"></i>
+                        <i class="fas fa-file-lines fa-lg me-1 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
-                            <div class="input-group ms-1" style="width:99%;">
+                            <div class="input-group ms-1">
                                 <textarea type="text" id="formRegisterDescripcion" class="form-control"
                                     style="resize: none;" formControlName="descripcion" placeholder="Descripción"
                                     cols="30" rows="7"></textarea>
                             </div>
                         </div>
                     </div>
-                    <!-- Mostrar imagen -->
-                    <!-- <div class="d-flex flex-row align-items-center mb-3" style="height:300px;"
-                        *ngIf="mostrarImagen==true">
-                        <img src="{{imagenes[0]}}" alt="" style="margin-left:8%; max-width: 92%;max-height: 300px;"
-                            id="imagenProducto">
-                    </div> -->
-                    <!-- Imput Imagen -->
-                    <div class="d-flex flex-row mb-4">
-                        <i class="fas fa-file-image fa-lg me-3 fa-fw"></i>
-                        <div class="input-group float-start mb-4" id="divInputImg">
-                            <input type="file" accept=".png, .jpg, .jpeg" class="form-control" style="margin-left:1%;"
-                                id="inputGroupFile01" multiple (change)="uploadImgStorage($event)">
-                            <label for="inputGroupFile01" class="labelInputFile"><img
-                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Circle-icons-upload.svg/1200px-Circle-icons-upload.svg.png"
-                                    alt="cargar imagen"></label>
+
+                    <div class="d-flex flex-row align-items-center mb-3">
+                        <div class="spinner-grow-box">
+                            <div class="spinner-grow  text-primary " role="status" *ngIf="esteUrlImagen=='cargando'">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow  text-secondary " role="status" *ngIf="esteUrlImagen=='cargando'">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow  text-success " role="status" *ngIf="esteUrlImagen=='cargando'">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow  text-danger " role="status" *ngIf="esteUrlImagen=='cargando'">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow  text-warning " role="status" *ngIf="esteUrlImagen=='cargando'">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow  text-info " role="status" *ngIf="esteUrlImagen=='cargando'">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
                         </div>
-                        <div class="d-flex flex-row align-items-center mb-3" *ngIf="mostrarImagen==true">
-                            <img src="{{imagenes[0]}}" alt="" style="margin-left:8%; max-width: 92%;max-height: 300px;"
-                                id="imagenProducto">
+
+                    </div>
+                    <div class="d-flex flex-row align-items-center mb-3">
+                        <img src="{{imagenes[0]}}"
+                            *ngIf="esteUrlImagen!=''&&esteUrlImagen!=null&&esteUrlImagen!='cargando'" alt="" 
+                            id="imagenProducto">
+                    </div>
+
+                    <div class="d-flex flex-row mb-2 align-items-center">
+                        <div class="input-group mb-2" id="divInputImg">
+                            <input type="file" accept=".png, .jpg, .jpeg" class="form-control"
+                                id="inputGroupFile01" multiple (change)="uploadImgStorage($event)">
+                            <label for="inputGroupFile01" class="labelInputFile">
+                                <i class="fa-solid fa-cloud-arrow-up" id="iconUpload"></i>
+                                <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Circle-icons-upload.svg/1200px-Circle-icons-upload.svg.png"
+                                    alt="cargar imagen"> -->
+                            </label>
                         </div>
                     </div>
                     <!-- Botones de Agregar y Volver -->
                     <div class="divider d-flex align-items-center my-4 ">
                         <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
                                 font-family: 'Patrick Hand', cursive; font-size:x-large">
-                            <button type="button" class="btn btnConfimar ms-3" (click)="volverCarga()">
-                                <i class="fa-solid fa-arrow-left"></i></button>
-                            <!-- Vuelve a cargar los datos desde firebase hasta el mostrar perfil -->
-                            <button type="button" class="btn btnConfimar ms-3"
-                                *ngIf="esteUrlImagen==''||esteUrlImagen==null"
-                                (click)="aviso()">Agregar</button> <!-- Agrega los productos a firebase -->
-                            <button type="button" class="btn btnConfimar ms-3"
-                                *ngIf="esteUrlImagen!=''&&esteUrlImagen!=null"
+                            <!-- <button type="button" class="btn btnConfimar ms-3" (click)="volverCarga()">
+                                <i class="fa-solid fa-arrow-left"></i></button> -->
+                            <!-- Vuelve a cargar los datos desde firebase hasta el mostrar perfil (click)="volverCarga()"-->
+                            <!-- <button type="button" class="btn btnConfimar"
+                                *ngIf="esteUrlImagen==''||esteUrlImagen==null||esteUrlImagen=='cargando'"
+                                (click)="aviso()">Agregar</button> -->
+                            <!-- Agrega los productos a firebase -->
+                            <button type="button" class="btn btnConfimar"
                                 (click)="agregarProducto()">Agregar</button> <!-- Agrega los productos a firebase -->
                         </p>
                     </div>
@@ -79,4 +103,8 @@
             </div>
         </div>
     </div>
+   
 </section>
+<div class="back-come">
+    <button class="button" type="button" (click)="volverCarga()"><i class="fa fa-user"></i> Mi perfil</button>
+</div>

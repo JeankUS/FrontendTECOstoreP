@@ -1,82 +1,116 @@
 <section class="vh-100">
-    <div class="container-fluid h-custom">
-        <div class="row d-flex justify-content-center align-items-center" style="margin-top:5%">
-            <div class="col-xl-4">
-                <div class="divider d-flex align-items-center my-4">
-                    <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
-                    font-family: 'Patrick Hand', cursive; font-size:x-large">Registrarse</p>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2">
 
+            <div class="col col1">
+                <!-- <div class="div-span-error" *ngIf="emptyIDJ||emptyNombre||emptyTelefono||emptyPassword||emptyCorreo">
+                    <span id="span-error">Debe llenar todos los campos</span>
+                </div> -->
+                <!-- <div class="div-span-error" *ngIf="minLengthIDJ||maxLengthIDJ">
+                    <span id="span-error">La cédula Juridica debe ser de 12 caractéres</span>
                 </div>
-                <form class="mx-1 mx-md-4 needs-validation" novalidate id="formRegistrarEmpresa" [formGroup]="registrarEmpresa" (ngSubmit)="agregarEmpresa()">
-                    <div class="d-flex flex-row align-items-center mb-4">
-                        <i class="fas fa-building fa-lg me-3 fa-fw"></i>
-                        <div class="form-outline flex-fill mb-0">
-                            <div class="input-group ms-1" style="width:99%;">
+                <div class="div-span-error" *ngIf="minLengthTelefono||maxLengthTelefono">
+                    <span id="span-error">La telefono debe ser de 8 dígitos</span>
+                </div>
+                <div class="div-span-error" *ngIf="minLengthPassword||maxLengthPassword">
+                    <span id="span-error">La contraseña debe ser entre 6-16 caractéres</span>
+                </div> -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h3 style="font-family: 'BIZ UDGothic', sans-serif; 
+                                    font-family: 'Patrick Hand', cursive;">Mi nuevo perfil</h3>
+                        </div>
 
-                                <input type="text" id="formRegisterIdJ" class="form-control" formControlName="idj"
-                                    placeholder="Cédula jurídica" minlength="12" maxlength="12" required/>
-                                <input type="text" id="formRegisterNombre" class="form-control" formControlName="nombre"
-                                    placeholder="Nombre" />
+                        <div class="divider align-items-center"></div>
+                        <form class="mx-1 mx-md-4" [formGroup]="registrarEmpresa" (ngSubmit)="agregarEmpresa()">
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <i class="fas fa-building fa-lg me-3 fa-fw"></i>
+                                <div class="form-outline flex-fill mb-0">
+                                    <div class="input-group ms-0">
+                                        <div>
+                                            <input type="text" id="formRegisterIdJ" class="form-control" required
+                                                formControlName="idj" placeholder="Cédula jurídica" />
+                                            
+                                        </div>
+                                        <div>
+                                            <input type="text" id="formRegisterNombre" class="form-control"
+                                                formControlName="nombre" placeholder="Nombre" />
+                                                
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <i class="fas fa-square-phone-flip fa-lg me-3 fa-fw"></i>
+                                <div class="form-outline flex-fill mb-0">
+                                    <input type="number" id="formRegisterTelefono" class="form-control"
+                                        formControlName="telefono" placeholder="N° Telefono" spinbutton="none" />
+                                </div>
                             </div>
 
-                        </div>
-                    </div>
 
-                    <div class="d-flex flex-row align-items-center mb-4">
-                        <i class="fas fa-square-phone-flip fa-lg me-3 fa-fw"></i>
-                        <div class="form-outline flex-fill mb-0">
-                            <input type="number" id="formRegisterTelefono" class="form-control"
-                                formControlName="telefono" placeholder="N° Telefono" spinbutton="none"/>
-                        </div>
-                    </div>
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                <div class="form-outline flex-fill mb-0">
+                                    <input type="email" id="formRegisterCE" class="form-control"
+                                        formControlName="correo" placeholder="Correo electrónico" />
+                                </div>
+                            </div>
 
 
-                    <div class="d-flex flex-row align-items-center mb-4">
-                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                        <div class="form-outline flex-fill mb-0">
-                            <input type="email" id="formRegisterCE" class="form-control" formControlName="correo"
-                                placeholder="Correo electrónico" pattern="[A-Za-z0-9]+@[A-Za-z]+\.[A-Za-z]+"/>
-                        </div>
-                    </div>
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <i class="fas fa-lock fa-lg fa-fw" style="margin-right: 1.141rem;"></i>
+                                <div class="input-group">
+                                    <input [type]="passLock? 'password' : 'text'" id="formRegisterPassword"
+                                        class="form-control" formControlName="contra"
+                                        placeholder="Ingrese su contraseña" />
+                                    <button (click)="buttonVPass()" class="btn btn-outline-secondary" id="buttonBlock"
+                                        style="border-color:#CED4DA;" type="button">
+                                        <i *ngIf="passLock===true" class="fa-solid fa-lock"></i>
+                                        <i *ngIf="passLock===false" class="fa-solid fa-lock-open"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div *ngIf="loading" class="loader">
+                                <span>Registrando...</span>
+                                <div>
+                                    <div></div>
+                                </div>
+                                <!-- </div></div> -->
+                                <!-- <div></div> -->
+                            </div>
+                            <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                <button type="submit" (click)="verificarInputs()"
+                                    class="btn btn-primary btn-lg buttonDarkGreen">Registrarse</button>
+                            </div>
+                        </form>
+                        <!-- <span ng-change="loading" class="spinner-border" role="status"></span> -->
 
-                    <div class="d-flex flex-row align-items-center mb-4">
-                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                        <div class="input-group">
-                            <input [type]="passLock? 'password' : 'text'" id="formRegisterPassword" class="form-control"
-                                formControlName="contra" placeholder="Ingrese su contraseña" />
-                            <button (click)="buttonVPass()" class="btn btn-outline-secondary"
-                                style="border-color:#CED4DA;" type="button">
-                                <i *ngIf="passLock===true" class="fa-solid fa-lock"></i>
-                                <i *ngIf="passLock===false" class="fa-solid fa-lock-open"></i>
-                            </button>
-                        </div>
                     </div>
-
-                    <div class="divider d-flex align-items-center my-4 ">
-                        <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
-                        font-family: 'Patrick Hand', cursive;">
-                            <span *ngIf="loading" class="spinner-border" role="status" style="color:#34656D"></span>
-                        </p>
-                    </div>
-                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                        <button type="submit" class="btn btn-primary btn-lg buttonDarkGreen">Registrarse</button>
-                    </div>
-                </form>
+                </div>
+            </div>
+            <div class="col col2">
+                <div class="div-span-error-i" *ngIf="!minLengthIDJ||!maxLengthIDJ">
+                    <span id="error-IDJ">La cédula Juridica debe ser de 12
+                        caractéres</span>
+                </div>
             </div>
         </div>
     </div>
 
 
-    <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 "
+    <!-- <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 "
         style="background-color:#34656D">
-        <!-- Copyright -->
+         
         <div class="text-white mb-3 mb-md-0 " style="font-family: 'BIZ UDGothic', sans-serif; 
         font-family: 'Patrick Hand', cursive;">
             Copyright © 2022. Derechos reservados.
         </div>
-        <!-- Copyright -->
+         
 
-        <!-- Right -->
+         
         <div>
             <a href="#!" class="text-white me-4">
                 <i class="fa-brands fa-facebook"></i>
@@ -88,6 +122,6 @@
                 <i class="fa-brands fa-linkedin-in"></i>
             </a>
         </div>
-        <!-- Right -->
-    </div>
+         
+    </div> -->
 </section>

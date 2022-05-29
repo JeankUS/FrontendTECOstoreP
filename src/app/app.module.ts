@@ -23,6 +23,9 @@ import { MiperfilComponent } from './components/miperfil/miperfil.component';
 import { AddproductsComponent } from './components/addproducts/addproducts.component';
 import { MyproductsComponent } from './components/myproducts/myproducts.component';
 import { ReloadMyProductsComponent } from './components/reload-my-products/reload-my-products.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { PruebasComponent } from './components/pruebas/pruebas.component';
+import { ProductsFilterComponent } from './components/products-filter/products-filter.component';
 
 
 @NgModule({
@@ -35,7 +38,9 @@ import { ReloadMyProductsComponent } from './components/reload-my-products/reloa
     MiperfilComponent,
     AddproductsComponent,
     MyproductsComponent,
-    ReloadMyProductsComponent
+    ReloadMyProductsComponent,
+    PruebasComponent,
+    ProductsFilterComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +54,7 @@ import { ReloadMyProductsComponent } from './components/reload-my-products/reloa
     ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), 
-    
+    NgxPaginationModule
     
   ],
   

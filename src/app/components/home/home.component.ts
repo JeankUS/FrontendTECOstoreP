@@ -1,7 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
+import { Firestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { ToastrService } from 'ngx-toastr';
+import { product } from 'src/app/product.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { ProductsService } from 'src/app/services/products.service';
+import { StorageService } from 'src/app/services/storage.service';
+import { UsersService } from 'src/app/services/users.service';
+import { userEmpresa } from 'src/app/usuarioEmpresa.model';
 
 @Component({
   selector: 'app-home',
@@ -9,110 +18,75 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  faCoffee = faCoffee;
-  //Formularios
-  formG: FormGroup;
+  passLock = true;
+  submitted = false;
+  loading = false;
+  mostrarImagen = false;
+  urlImagen: string | null = ''
+  idDelProducto: string | null = ''
+  pages: number = 1;
   //Listas
+  empresas: userEmpresa[] = [];
+  productos: product[] = []
+  misProductos: product[] = [];
+  imagenes: any[] = [];
+  //Inicialización de objetos
+  usuario: userEmpresa = { idj: '', nombre: '', telefono: '', correo: '', contra: '' };
+  producto: product = { nombreEmpresa: '', idProducto: '', nombre: '', categoria:'', descripcion: '', imagen: '' }
 
-  //Otros
+  constructor(private router: Router,
+    private fb: FormBuilder,
+    private _serviceAuth: AuthService,
+    private _userService: UsersService,
+    private _productsService: ProductsService,
+    private toastr: ToastrService,
+    private auth: Auth,
+    private firestore: Firestore,
+    private _storageService: StorageService) {
 
-  //Constructor
-  constructor(private auth: Auth, private fb: FormBuilder) {
-    this.formG = this.fb.group({
-      correo: ['']
-    })
   }
 
   ngOnInit(): void {
-    
+    this.getUsuarios()
+    this.getProductos()
   }
 
-  prueba() {
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function () {
-      'use strict'
-
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.querySelectorAll('.needs-validation')
-
-      // Loop over them and prevent submission
-      Array.prototype.slice.call(forms)
-        .forEach(function (form) {
-          form.addEventListener('submit', function (event: any) {
-            if (!form.checkValidity()) {
-              event.preventDefault()
-              event.stopPropagation()
-            }
-
-            form.classList.add('was-validated')
-          }, false)
-        })
-    })()
+  getDatosEmpresa(idEmpresa:string) {
+    if (idEmpresa != null) {
+      for (let i = 0; i < this.empresas.length; i++) {
+        if (this.empresas[i].idj == idEmpresa) {
+          return this.empresas[i].nombre
+        }
+      }
+    } return null
   }
+  getUsuarios() {
+    this._userService.getUsuarios().subscribe((res: userEmpresa[]) => {
+      this.empresas = res;
 
-  submit() {
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function () {
-      'use strict'
-
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.querySelectorAll('.needs-validation')
-
-      // Loop over them and prevent submission
-      Array.prototype.slice.call(forms)
-        .forEach(function (form) {
-          form.addEventListener('submit', function (event: any) {
-            if (!form.checkValidity()) {
-              event.preventDefault()
-              event.stopPropagation()
-            }
-
-            form.classList.add('was-validated')
-          }, false)
-        })
-    })()
+    });
   }
-
-  // <select> element displays its options on mousedown, not click.
-  
-  evento(event: any) {
-    
-    // ExpandSelect("selec");
-    const selec = document.getElementById("selec")
-    if (selec != null) {
-      // ExpandSelect()
-
-    }
-    // const navbarDropdown1 = document.getElementById("navbarDropdown1")
-    // const otro = document.getElementById("estocito")
-    // if (menuPerfilDropdown !== null) {
-    //   if (menuPerfilDropdown.className == "nav-item dropdown") {
-    //     menuPerfilDropdown.className = "nav-item dropdown show";
-    //     console.log(menuPerfilDropdown.className, "fuck")
-    //     if (navbarDropdown1 != null) {
-    //       navbarDropdown1.ariaExpanded = "true"
-    //       if (otro != null) {
-    //         otro.className = "dropdown-menu show"
-    //       }
-    //     }
-    //   }
-    // }
-
-    // setTimeout(function () {
-    //   if (menuPerfilDropdown !== null) {
-    //     if (menuPerfilDropdown.className == "nav-item dropdown show") {
-    //       menuPerfilDropdown.className = "nav-item dropdown";
-    //       console.log(menuPerfilDropdown.className)
-    //       if (navbarDropdown1 != null) {
-    //         navbarDropdown1.ariaExpanded = "false"
-    //         if (otro != null) {
-    //           otro.className = "dropdown-menu"
-    //         }
-    //       }
-    //     }
-    //   }
-    // }, 3000);
-    // console.log("I am the second log");
-
+  getProductos() {
+    this._productsService.getProductos().subscribe((res: product[]) => {
+      this.productos = res;
+      for (let i = 0; i < this.productos.length; i++) {
+        if (this.productos[i].nombreEmpresa == this.buscarIDEmpresa()) {
+          this.misProductos.push(this.productos[i])
+        }
+      }
+    })
+  }
+  buscarIDEmpresa() {
+    if (this.auth.currentUser != null) {
+      for (let i = 0; i < this.empresas.length; i++) {
+        if (this.empresas[i].correo == this.auth.currentUser.email) {
+          return this.empresas[i].idj
+        }
+      }
+    } return null
+  }
+  obtenerIdProducto(id: string) {
+    this.idDelProducto = id
+    return id
   }
 }
