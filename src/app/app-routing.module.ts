@@ -9,6 +9,7 @@ import { MyproductsComponent } from './components/myproducts/myproducts.componen
 import { ReloadMyProductsComponent } from './components/reload-my-products/reload-my-products.component';
 import { PruebasComponent } from './components/pruebas/pruebas.component';
 import { ProductsFilterComponent } from './components/products-filter/products-filter.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'Home', pathMatch:"full"},
@@ -20,6 +21,8 @@ const routes: Routes = [
   {path:'Myproducts',component: MyproductsComponent},
   {path:'ReloadMyproducts',component: ReloadMyProductsComponent},
   {path:'Products',component: ProductsFilterComponent},
+  {path:'Details',component: ProductDetailsComponent},
+  {path:'Details/:id',component: ProductDetailsComponent},
   {path:'Pruebas',component: PruebasComponent},
   {path:'**',redirectTo:'Home', pathMatch:"full"},
 ];

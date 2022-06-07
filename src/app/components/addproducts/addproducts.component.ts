@@ -30,7 +30,7 @@ export class AddproductsComponent implements OnInit {
   usuario: userEmpresa = { idj: '', nombre: '', telefono: '', correo: '', contra: '' };
 
 
-  producto: product = { nombreEmpresa: '', idProducto: '', nombre: '', categoria: '', descripcion: '', imagen: '' }
+  producto: product = { idEmpresa: '', idProducto: '', nombre: '', categoria: '', descripcion: '', imagen: '' }
 
   constructor(
     private router: Router,
@@ -52,9 +52,7 @@ export class AddproductsComponent implements OnInit {
   ngOnInit(): void {
     this.getUsuarios();
   }
-
-
-
+  
   uploadImgStorage(event: any) {
     let idGenerated = Math.random().toString(36).substring(2, 32)                             //genera un id random para la dirección url de la imagen
     this.esteUrlImagen = 'cargando'
@@ -66,7 +64,6 @@ export class AddproductsComponent implements OnInit {
       this.mostrarImagen = false
     }
     reader.onloadend = () => {
-      // console.log(reader.result)
       this.imagenes.push(reader.result)
       this._storageService.subirImagen(idGenerated, reader.result).then(urlImagen => {
         this.esteUrlImagen = urlImagen
@@ -91,7 +88,7 @@ export class AddproductsComponent implements OnInit {
     if (this.auth.currentUser != null) {
       for (let i = 0; i < this.empresas.length; i++) {
         if (this.empresas[i].correo == this.auth.currentUser.email) {
-          return this.empresas[i].nombre
+          return this.empresas[i].idj
         }
       }
     } return null
@@ -102,7 +99,7 @@ export class AddproductsComponent implements OnInit {
       var nE = this.buscarIDEmpresa();
       if (nE != null) {
         const producto: product = {
-          nombreEmpresa: String(nE),
+          idEmpresa: String(nE),
           idProducto: this.registerProducto.value.idProducto,
           nombre: this.registerProducto.value.nombre,
           categoria: this.registerProducto.value.categoria.toLowerCase(),

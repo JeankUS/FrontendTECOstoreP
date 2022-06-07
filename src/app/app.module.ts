@@ -26,6 +26,7 @@ import { ReloadMyProductsComponent } from './components/reload-my-products/reloa
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PruebasComponent } from './components/pruebas/pruebas.component';
 import { ProductsFilterComponent } from './components/products-filter/products-filter.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { ProductsFilterComponent } from './components/products-filter/products-f
     ReloadMyProductsComponent,
     PruebasComponent,
     ProductsFilterComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,

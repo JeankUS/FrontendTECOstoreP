@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
   imagenes: any[] = [];
   //Inicialización de objetos
   usuario: userEmpresa = { idj: '', nombre: '', telefono: '', correo: '', contra: '' };
-  producto: product = { nombreEmpresa: '', idProducto: '', nombre: '', categoria:'', descripcion: '', imagen: '' }
+  producto: product = { idEmpresa: '', idProducto: '', nombre: '', categoria: '', descripcion: '', imagen: '' }
 
   constructor(private router: Router,
     private fb: FormBuilder,
@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
     this.getProductos()
   }
 
-  getDatosEmpresa(idEmpresa:string) {
+  getDatosEmpresa(idEmpresa: string) {
     if (idEmpresa != null) {
       for (let i = 0; i < this.empresas.length; i++) {
         if (this.empresas[i].idj == idEmpresa) {
@@ -61,16 +61,18 @@ export class HomeComponent implements OnInit {
     } return null
   }
   getUsuarios() {
+    this.empresas = []
     this._userService.getUsuarios().subscribe((res: userEmpresa[]) => {
       this.empresas = res;
 
     });
   }
   getProductos() {
+    this.productos = []
     this._productsService.getProductos().subscribe((res: product[]) => {
       this.productos = res;
       for (let i = 0; i < this.productos.length; i++) {
-        if (this.productos[i].nombreEmpresa == this.buscarIDEmpresa()) {
+        if (this.productos[i].idEmpresa == this.buscarIDEmpresa()) {
           this.misProductos.push(this.productos[i])
         }
       }
@@ -88,5 +90,13 @@ export class HomeComponent implements OnInit {
   obtenerIdProducto(id: string) {
     this.idDelProducto = id
     return id
+  }
+  obtenerEmpresa(id: string) {
+    for (let i = 0; this.empresas.length; i++) {
+      if (this.empresas[i].idj = id) {
+        return this.empresas[i]
+      }
+    }
+    return null
   }
 }

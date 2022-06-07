@@ -14,7 +14,7 @@ import { userEmpresa } from 'src/app/usuarioEmpresa.model';
 })
 export class RegisterComponent implements OnInit {
   //Formularios
-  public registrarEmpresa!: FormGroup;
+  registrarEmpresa!: FormGroup;
   //listas
   empresas: userEmpresa[] = []
   //Inicialización de objetos
@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cargarUsuarios();
+    this.getUsuarios();
     this.registrarEmpresa = this.initForm();
   } public contactForm!: FormGroup;
 
@@ -94,7 +94,7 @@ export class RegisterComponent implements OnInit {
   }
 
   //Carga la lista de empresas con las empresas registradas en la base de datos
-  cargarUsuarios() {
+  getUsuarios() {
     this._usuarioService.getUsuarios().subscribe((res: userEmpresa[]) => {
       this.empresas = res;
     });

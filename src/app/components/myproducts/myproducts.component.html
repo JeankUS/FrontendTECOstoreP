@@ -19,11 +19,11 @@
                     <h5 style="font-family: 'BIZ UDGothic', sans-serif; 
                             font-family: 'Patrick Hand', cursive;">{{ producto.nombre }}</h5>
                 </div>
-                <div class="card-body">
+                <div class="card-body" [routerLink]="['/Details/', obtenerIdProducto(producto.idProducto)]" type="button" >
                     <div class="card-text">
                         <img src="{{producto.imagen}}" alt="pollito">
                         <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
-                                font-family: 'Patrick Hand', cursive;">{{producto.nombreEmpresa}}</h6>
+                                font-family: 'Patrick Hand', cursive;">{{obtenerEmpresa(producto.idEmpresa)?.nombre}}</h6>
                         <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
                                 font-family: 'Patrick Hand', cursive;">{{producto.idProducto}}</h6>
                     </div>
@@ -40,9 +40,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
 <div class="background-pagination" *ngIf="misProductos.length >= 1">
     <div class="divPagination">
@@ -55,11 +53,13 @@
 <div class="back-come">
     <button type="button" routerLink="/Miperfil"><i class="fa fa-user"></i> Mi perfil</button>
 </div>
+
 <!-- <div class="btn-whatsapp">
     <a href="https://api.whatsapp.com/send?phone=85793037" target="_blank">
         <img src="http://s2.accesoperu.com/logos/btn_whatsapp.png" alt="">
     </a>
 </div> -->
+
 <!-- Modal Eliminar producto-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

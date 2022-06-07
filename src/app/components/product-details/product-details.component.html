@@ -1,0 +1,82 @@
+<!-- <div class="title-container"> -->
+<div class="title-page">
+    <span>Detalle del producto</span>
+</div>
+<!-- </div> -->
+
+<div class="divider d-flex align-items-center my-4"></div>
+
+<div class="container">
+    <div class="fila">
+        <div class="columna"></div>
+        <div class="columna">
+            <div class="card">
+                <div class="fila2">
+                    <div class="columna">
+                        <div class="card-body col-izq">
+                            <div class="card-text izq">
+                                <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
+                                    font-family: 'Patrick Hand', cursive;">Nombre del producto: </h6>
+                                <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
+                                    font-family: 'Patrick Hand', cursive;">Nombre de la empresa: </h6>
+                                <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
+                                    font-family: 'Patrick Hand', cursive;">Categoría: </h6>
+                                <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
+                                    font-family: 'Patrick Hand', cursive;">Código del producto: </h6>
+                                <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
+                                    font-family: 'Patrick Hand', cursive;">Descripción: </h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columna">
+                        <div class="card-body col-center">
+                            <div class="card-text center">
+                                <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
+                                        font-family: 'Patrick Hand', cursive;">{{ producto.nombre }}</h6>
+                                <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
+                                            font-family: 'Patrick Hand', cursive;">
+                                    {{obtenerEmpresa(producto.idEmpresa)?.nombre}}</h6>
+                                <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
+                                            font-family: 'Patrick Hand', cursive;">{{producto.categoria}}</h6>
+                                <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
+                                            font-family: 'Patrick Hand', cursive;">{{producto.idProducto}}</h6>
+                                <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
+                                            font-family: 'Patrick Hand', cursive;">{{producto.descripcion}}</h6>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columna">
+                        <div class="card-body col-der">
+                            <div class="card-text der">
+                                <img src="{{producto.imagen}}" alt="pollito">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="fila">
+        <div></div>
+        <div class="contacto">
+            <div class="info-contacto">
+                <p>
+                    Para obtener el producto, puede contactarse con nosotros:
+                </p>
+            </div>
+            <div class="info-contacto">
+                <i class="fa-brands fa-whatsapp-square"> </i>
+                <p>{{obtenerEmpresa(producto.idEmpresa)?.telefono}}</p>
+                <i class="fas fa-envelope"> </i>
+                <p>{{obtenerEmpresa(producto.idEmpresa)?.correo}}</p>
+            </div>
+        </div>
+        <div></div>
+    </div>
+
+</div>
