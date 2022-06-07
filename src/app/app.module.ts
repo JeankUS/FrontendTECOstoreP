@@ -23,6 +23,7 @@ import { MiperfilComponent } from './components/miperfil/miperfil.component';
 import { AddproductsComponent } from './components/addproducts/addproducts.component';
 import { MyproductsComponent } from './components/myproducts/myproducts.component';
 import { ReloadMyProductsComponent } from './components/reload-my-products/reload-my-products.component';
+import { AcercaDeComponent } from './components/acerca-de/acerca-de.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ReloadMyProductsComponent } from './components/reload-my-products/reloa
     MiperfilComponent,
     AddproductsComponent,
     MyproductsComponent,
-    ReloadMyProductsComponent
+    ReloadMyProductsComponent,
+    AcercaDeComponent
   ],
   imports: [
     BrowserModule,
