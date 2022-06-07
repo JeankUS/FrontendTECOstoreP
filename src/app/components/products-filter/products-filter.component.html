@@ -52,11 +52,11 @@
                             font-family: 'Patrick Hand', cursive;">{{ producto.nombre }}</h5>
                 </div>
                 <!-- Atributos e imagen -->
-                <div class="card-body">
+                <div class="card-body" [routerLink]="['/Details/', obtenerIdProducto(producto.idProducto)]" type="button">
                     <div class="card-text">
                         <img src="{{producto.imagen}}" alt="pollito">
                         <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
-                                font-family: 'Patrick Hand', cursive;">{{producto.nombreEmpresa}}</h6>
+                                font-family: 'Patrick Hand', cursive;">{{obtenerEmpresa(producto.idEmpresa)?.nombre}}</h6>
                         <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
                                 font-family: 'Patrick Hand', cursive;">{{producto.idProducto}}</h6>
                         <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
@@ -83,11 +83,11 @@
                             font-family: 'Patrick Hand', cursive;">{{ producto.nombre }}</h5>
                 </div>
                 <!-- Atributos e imagen -->
-                <div class="card-body">
+                <div class="card-body" [routerLink]="['/Details/', obtenerIdProducto(producto.idProducto)]" type="button">
                     <div class="card-text">
                         <img src="{{producto.imagen}}" alt="pollito">
                         <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
-                                font-family: 'Patrick Hand', cursive;">{{producto.nombreEmpresa}}</h6>
+                                font-family: 'Patrick Hand', cursive;">{{obtenerEmpresa(producto.idEmpresa)?.nombre}}</h6>
                         <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
                                 font-family: 'Patrick Hand', cursive;">{{producto.idProducto}}</h6>
                         <h6 style="font-family: 'BIZ UDGothic', sans-serif; 

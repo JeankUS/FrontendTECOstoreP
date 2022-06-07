@@ -26,7 +26,6 @@ export class NavbarComponent implements OnInit {
       if (menuPerfilDropdown !== null) {
         menuPerfilDropdown.className = "nav-item dropdown";
 
-        console.log(menuPerfilDropdown.className)
         if (navbarDropdown1 != null) {
           navbarDropdown1.ariaExpanded = "false"
           if (otro != null) {

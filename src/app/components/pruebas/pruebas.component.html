@@ -40,7 +40,7 @@
     </form>
     
 </div> -->
-
+<!-- 
 <style>
     .tooltip {
         display: inline-block;
@@ -69,4 +69,83 @@
 
 <div class="esto">Hover over me
     <span class="lootro">Tooltip text</span>
-</div>
+</div> -->
+
+<style>
+    .container {}
+
+    .fila {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        width: 100%;
+        gap: 20px;
+
+    }
+
+    .columna {
+        height: 25rem;
+    }
+
+    .card {
+        text-align: center;
+        margin-top: 1rem;
+        height: 100%;
+        width:300px;
+        border-radius: 25px;
+        transition: transform 0.25s, box-shadow 0.25s
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 6px 6px 1rem;
+    }
+
+    .card-text {
+        height: 20%;
+    }
+
+    .card-title {
+        height: 10%;
+        background-color: #34656D;
+        border-radius: 25px 25px 0 0;
+    }
+
+    .footerCard {
+        height: 10%;
+        background-color: #34656D;
+        border-radius: 0 0 25px 25px;
+    }
+
+    img {
+        width: 95%;
+        height: 60%;
+    }
+</style>
+
+<section class="">
+    <div class="container">
+        <div class="fila">
+            <div class="columna">
+                <div class="card" type="button">
+                    <!-- Titulo -->
+                    <div class="card-title"></div>
+                    <!-- Atributos e imagen -->
+                    <img src="https://www.metasrc.com/assets/v/6.0.9/images/logo.png" alt="pollito">
+                    <div class="card-text">
+                        <h5 style="font-family: 'BIZ UDGothic', sans-serif; 
+                                font-family: 'Patrick Hand', cursive;">nombre</h5>
+                        <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
+                                    font-family: 'Patrick Hand', cursive;">producto</h6>
+                    </div>
+                    <!-- <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
+                                    font-family: 'Patrick Hand', cursive;">{{producto.idProducto}}</h6> -->
+
+                    <!-- Footer  -->
+                    <div class="align-items-center footerCard"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>

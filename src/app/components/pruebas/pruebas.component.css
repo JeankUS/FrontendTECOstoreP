@@ -13,3 +13,53 @@ input:required:invalid {
 input::selection{
     border-color: red;
 }
+
+/* .card-title {
+    color: white;
+    background-color: #34656D;
+    width: 100%;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    height: 10%;
+}
+
+.card {
+    text-align: center;
+    background-color: rgba(32, 208, 235, 0.8);
+    width: 95%;
+    height: 100%;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 25px;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0.50rem 1.25rem 1rem;
+}
+
+
+.footerCard {
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    background-color: #34656D;
+    width: 100%;
+    height: 10%;
+}
+
+.card-body {
+    background-color: #f8b2b2;
+    width:100%;
+}
+
+.card-body:active {
+    transform: scale(0.95);
+}
+
+.card-text img {
+    width: 60%;
+    height: 60%;
+} */
+
+

@@ -58,6 +58,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  olvidarContraseña() {
+    //Tengo que hacerlo con urgencia
+  }
+
   loginWithEmail() {
     this.getUsuarios()
     this.validarInputsVacios()
@@ -65,30 +69,34 @@ export class LoginComponent implements OnInit {
       correo: this.loginForm.value.email,
       contra: this.loginForm.value.password
     }
-
-    for (let i = 0; i < this.empresas.length; i++) {
-      if (this.empresas[i].correo == usuario.correo) {
-        if (this.empresas[i].contra == usuario.contra) {
-          this._serviceAuth.emailLogin(usuario.correo, usuario.contra).then(() => {
-            this.router.navigate(['/home']);
-          }).catch(err => {
-            if (err.message == "Firebase: Error (auth/user-not-found).") {
-              this.toastr.error("El usuario ingresado no existe", "Error al iniciar sesión")
-            }
-          })
-        } else {
-          this.toastr.error("La contraseña ingresada es inválida", "Error al iniciar sesión")
+    if ((this.emptyForm && this.emptyPattern) == false) {
+      for (let i = 0; i < this.empresas.length; i++) {
+        if (this.empresas[i].correo == usuario.correo) {
+          if (this.empresas[i].contra == usuario.contra) {
+            this._serviceAuth.emailLogin(usuario.correo, usuario.contra).then(() => {
+              this.router.navigate(['/home']);
+            }).catch(err => {
+              if (err.message == "Firebase: Error (auth/user-not-found).") {
+                this.toastr.error("El usuario ingresado no existe", "Error al iniciar sesión")
+              }
+            })
+          } else {
+            this.toastr.error("La contraseña ingresada es inválida", "Error al iniciar sesión")
+          }
         }
       }
+
+      this._serviceAuth.emailLogin(usuario.correo, usuario.contra).then(() => {
+        this.router.navigate(['/home']);
+      }).catch(err => {
+        if (err.message == "Firebase: Error (auth/user-not-found).") {
+          this.toastr.error("El usuario ingresado no existe", "Error al iniciar sesión")
+        }
+      })
+    }else{
+      this.toastr.error("Debe rellenar todos los campos", "Error al iniciar sesión")
     }
 
-    this._serviceAuth.emailLogin(usuario.correo, usuario.contra).then(() => {
-      this.router.navigate(['/home']);
-    }).catch(err => {
-      if (err.message == "Firebase: Error (auth/user-not-found).") {
-        this.toastr.error("El usuario ingresado no existe", "Error al iniciar sesión")
-      }
-    })
   }
 
   loginWithGoogle() {
@@ -113,25 +121,35 @@ export class LoginComponent implements OnInit {
     let self = this
     let identificadorIntervaloDeTiempo;
     if (email != null && password != null) {
-      console.log(self.loginForm.get('email')?.hasError('pattern'))
-
-      function repetirCadaSegundo() {
-        identificadorIntervaloDeTiempo = setInterval(ver, 100);
+      if (!self.loginForm.get('email')?.hasError('pattern')) {
+        self.emptyPattern = true;
+      } else {
+        self.emptyPattern = false;
       }
-      repetirCadaSegundo()
-
-      function ver() {
-        if (!self.loginForm.get('email')?.hasError('pattern')) {
-          self.emptyPattern = true;
-        } else {
-          self.emptyPattern = false;
-        }
-        if (self.loginForm.get('email')?.value == '' || self.loginForm.get('password')?.value == '') {
-          self.emptyForm = true;
-        } else {
-          self.emptyForm = false;
-        }
+      if (self.loginForm.get('email')?.value == '' || self.loginForm.get('password')?.value == '') {
+        self.emptyForm = true;
+      } else {
+        self.emptyForm = false;
       }
+      // console.log(self.loginForm.get('email')?.hasError('pattern'))
+
+      // function repetirCadaSegundo() {
+      //   identificadorIntervaloDeTiempo = setInterval(ver, 100);
+      // }
+      // repetirCadaSegundo()
+
+      // function ver() {
+      //   if (!self.loginForm.get('email')?.hasError('pattern')) {
+      //     self.emptyPattern = true;
+      //   } else {
+      //     self.emptyPattern = false;
+      //   }
+      //   if (self.loginForm.get('email')?.value == '' || self.loginForm.get('password')?.value == '') {
+      //     self.emptyForm = true;
+      //   } else {
+      //     self.emptyForm = false;
+      //   }
+      // }
     }
 
   }
