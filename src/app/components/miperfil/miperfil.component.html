@@ -1,119 +1,116 @@
-<div class="vh-100">
-    <div class="title-page" *ngIf="editando==false">
-        <span></span>
-        <span>Mi perfil</span>
-    </div>
-    <div class="dividerd d-flex align-items-center my-4"></div>
-    <div class="container-fluid h-custom ">
-        <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-xl-5">
+<div class="title-page" *ngIf="editando==false">
+    <span></span>
+    <span>Mi perfil</span>
+</div>
+<div class="dividerd d-flex align-items-center my-4"></div>
+<div class="container-fluid h-custom ">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-xl-5">
 
-                <div class="card" *ngIf="editando==false">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col">
-                                <p class="letrita text-end">Cédula Jurídica: </p>
-                                <p class="letrita text-end">Empresa: </p>
-                                <p class="letrita text-end">Teléfono: </p>
-                                <p class="letrita text-end">Correo: </p>
-                            </div>
-                            <div class="col">
-                                <p class="letrita text-start" id="cargaIDJ"></p>
-                                <p class="letrita text-start" id="cargaNE"></p>
-                                <p class="letrita text-start " id="cargaTE"></p>
-                                <p class="letrita text-start" id="cargaCE"></p>
-                            </div>
+            <div class="card" *ngIf="editando==false">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <p class="letrita text-end">Cédula Jurídica: </p>
+                            <p class="letrita text-end">Empresa: </p>
+                            <p class="letrita text-end">Teléfono: </p>
+                            <p class="letrita text-end">Correo: </p>
                         </div>
-                        <div class="divider d-flex align-items-center my-4">
-                            <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
-                            font-family: 'Patrick Hand', cursive; font-size:x-large">
-                                <i type="button" class="fa-solid fa-edit me-3" id="iGreen"
-                                    (click)="cargarEditarPerfil()"></i>
-                                <i type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" id="iRed"
-                                    class="fa-solid fa-trash ms-3"></i>
-                            </p>
+                        <div class="col">
+                            <p class="letrita text-start" id="cargaIDJ"></p>
+                            <p class="letrita text-start" id="cargaNE"></p>
+                            <p class="letrita text-start " id="cargaTE"></p>
+                            <p class="letrita text-start" id="cargaCE"></p>
                         </div>
                     </div>
-                </div>
-
-                <div class="card" *ngIf="editando==true">
-                    <div class="card-body">
-                        <div class="" style="margin-left:25% ;" [formGroup]="editForm">
-                            <p class="form-floating"><input class="text-start inputEdit form-control"
-                                    style="border: none;" type="text" id="formIDJ" type="text" formControlName="IDJ"
-                                    onmousedown="return false">
-                                <label for="formIDJ">Cédula Jurídica:</label>
-                            </p>
-
-                            <p class="form-floating"><input class="text-start inputEdit form-control" id="formNE"
-                                    type="text" formControlName="nombre">
-                                <label for="formNE">Empresa:</label>
-                            </p>
-                            <p class="form-floating"><input class="text-start inputEdit form-control" id="formTE"
-                                    type="text" formControlName="telefono">
-                                <label for="formTE">Teléfono:</label>
-                            </p>
-                            <p class="form-floating"><input class="text-start inputEdit form-control"
-                                    style="border: none;" id="formCE" type="text" formControlName="correo"
-                                    onmousedown="return false">
-                                <label for="formCE">Correo electrónico:</label>
-                            </p>
-                            <p class="form-floating"><input class="text-start inputEdit form-control" id="formContra"
-                                    type="text" formControlName="contra">
-                                <label for="formContra">Contraseña:</label>
-                            </p>
-                        </div>
-
-                        <div class="divider d-flex align-items-center my-4">
-                            <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
+                    <div class="divider d-flex align-items-center my-4">
+                        <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
                             font-family: 'Patrick Hand', cursive; font-size:x-large">
-                                <button type="button" class="btn btnConfimar ms-3" data-toggle="modal"
-                                    data-target="#exampleModal">Agregar</button>
-                                <button type="button" class="btn btnConfimar ms-3" (click)="volverCarga()">
-                                    Cancelar</button>
-                                <!-- Agrega los productos a firebase -->
+                            <i type="button" class="fa-solid fa-edit me-3" id="iGreen"
+                                (click)="cargarEditarPerfil()"></i>
+                            <i type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" id="iRed"
+                                class="fa-solid fa-trash ms-3"></i>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" *ngIf="editando==true">
+                <div class="card-body">
+                    <div class="" style="margin-left:25% ;" [formGroup]="editForm">
+                        <p class="form-floating"><input class="text-start inputEdit form-control" style="border: none;"
+                                type="text" id="formIDJ" type="text" formControlName="IDJ" onmousedown="return false">
+                            <label for="formIDJ">Cédula Jurídica:</label>
+                        </p>
+
+                        <p class="form-floating"><input class="text-start inputEdit form-control" id="formNE"
+                                type="text" formControlName="nombre">
+                            <label for="formNE">Empresa:</label>
+                        </p>
+                        <p class="form-floating"><input class="text-start inputEdit form-control" id="formTE"
+                                type="text" formControlName="telefono">
+                            <label for="formTE">Teléfono:</label>
+                        </p>
+                        <p class="form-floating"><input class="text-start inputEdit form-control" style="border: none;"
+                                id="formCE" type="text" formControlName="correo" onmousedown="return false">
+                            <label for="formCE">Correo electrónico:</label>
+                        </p>
+                        <p class="form-floating"><input class="text-start inputEdit form-control" id="formContra"
+                                type="text" formControlName="contra">
+                            <label for="formContra">Contraseña:</label>
+                        </p>
+                    </div>
+
+                    <div class="divider d-flex align-items-center my-4">
+                        <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
+                            font-family: 'Patrick Hand', cursive; font-size:x-large">
+                            <button type="button" class="btn btnConfimar ms-3" data-toggle="modal"
+                                data-target="#exampleModal">Agregar</button>
+                            <button type="button" class="btn btnConfimar ms-3" (click)="volverCarga()">
+                                Cancelar</button>
+                            <!-- Agrega los productos a firebase -->
 
 
-                            </p>
-                        </div>
-                        <!-- Modal Editar Empresa-->
-                        <div class=" modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
-                                        <button type="button" class="btn-close" data-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        ¿Desea guardar cambios?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btnConfimar" (click)="editarEmpresa()"
-                                            data-dismiss="modal">Guardar
-                                            Cambios</button>
-                                        <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Cancelar</button>
-                                    </div>
+                        </p>
+                    </div>
+                    <!-- Modal Editar Empresa-->
+                    <div class=" modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+                                    <button type="button" class="btn-close" data-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    ¿Desea guardar cambios?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btnConfimar" (click)="editarEmpresa()"
+                                        data-dismiss="modal">Guardar
+                                        Cambios</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Cancelar</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="divider2 d-flex align-items-center my-4">
-                    <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
+            </div>
+            <div class="divider2 d-flex align-items-center my-4">
+                <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
                     font-family: 'Patrick Hand', cursive; font-size:x-large">
-                        <button *ngIf="editando==false" type="button" class="btn btnConfimar ms-3"
-                            routerLink="/Addproducts">Agregar producto</button>
-                        <button *ngIf="editando==false" type="button" class="btn btnConfimar ms-3"
-                            routerLink="/Myproducts">Mis productos</button>
-                    </p>
-                </div>
+                    <button *ngIf="editando==false" type="button" class="btn btnConfimar ms-3"
+                        routerLink="/Addproducts">Agregar producto</button>
+                    <button *ngIf="editando==false" type="button" class="btn btnConfimar ms-3"
+                        routerLink="/Myproducts">Mis productos</button>
+                </p>
             </div>
         </div>
     </div>
 </div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

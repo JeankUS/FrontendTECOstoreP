@@ -1,70 +1,68 @@
-<section class="vh-100">
-    <div class="container">
-        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1">
-            <div class="col">
-                <!-- <div class="div-span-error" *ngIf="emptyForm">
+<div class="container">
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1">
+        <div class="col">
+            <!-- <div class="div-span-error" *ngIf="emptyForm">
                     <span id="span-error">Debe llenar todos los campos</span>
                 </div> -->
-                <div class="div-span-error" *ngIf="emptyPattern">
-                    <span id="span-error">Verifique su correo electrónico</span>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card-title">
-                            <h3 style="font-family: 'BIZ UDGothic', sans-serif; 
+            <div class="div-span-error" *ngIf="emptyPattern">
+                <span id="span-error">Verifique su correo electrónico</span>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h3 style="font-family: 'BIZ UDGothic', sans-serif; 
                                     font-family: 'Patrick Hand', cursive;">Inicio de sesión</h3>
+                    </div>
+                    <div class="divider align-items-center"></div>
+                    <form class="mx-1 mx-md-4" [formGroup]="loginForm">
+                        <!-- Email input -->
+                        <div class="mb-4" cont>
+                            <input type="email" id="email" class="form-control" onkeydown="if (event.keyCode == 13)
+                                document.getElementById('btn-register').click()" formControlName="email"
+                                placeholder="Ingrese su correo electrónico" />
+                            <label type="" id="labelcito"></label>
+
                         </div>
-                        <div class="divider align-items-center"></div>
-                        <form class="mx-1 mx-md-4" [formGroup]="loginForm">
-                            <!-- Email input -->
-                            <div class="mb-4" cont>
-                                <input type="email" id="email" class="form-control" onkeydown="if (event.keyCode == 13)
-                                document.getElementById('btn-register').click()"
-                                    formControlName="email" placeholder="Ingrese su correo electrónico"/>
-                                <label type="" id="labelcito"></label>
 
+                        <!-- Password input -->
+                        <div class=" mb-3">
+                            <div class="input-group mb-3">
+                                <input [type]="passLock? 'password' : 'text'" id="password" class="form-control"
+                                    formControlName="password" placeholder="Ingrese su contraseña" onkeydown="if (event.keyCode == 13)
+                                        document.getElementById('btn-register').click()" />
+                                <button (click)="buttonVPass()" class="btn btn-outline-secondary"
+                                    style="border-color:#CED4DA;" type="button" id="buttonBlock">
+                                    <i *ngIf="passLock===true" class="fa-solid fa-lock"></i>
+                                    <i *ngIf="passLock===false" class="fa-solid fa-lock-open" alt="mostrar"></i>
+                                </button>
                             </div>
+                        </div>
 
-                            <!-- Password input -->
-                            <div class=" mb-3">
-                                <div class="input-group mb-3">
-                                    <input [type]="passLock? 'password' : 'text'" id="password"
-                                        class="form-control" formControlName="password"
-                                        placeholder="Ingrese su contraseña" onkeydown="if (event.keyCode == 13)
-                                        document.getElementById('btn-register').click()"/>
-                                    <button (click)="buttonVPass()" class="btn btn-outline-secondary"
-                                        style="border-color:#CED4DA;" type="button" id="buttonBlock">
-                                        <i *ngIf="passLock===true" class="fa-solid fa-lock"></i>
-                                        <i *ngIf="passLock===false" class="fa-solid fa-lock-open" alt="mostrar"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- <div class="d-flex justify-content-between align-items-center">
+                        <!-- <div class="d-flex justify-content-between align-items-center">
                             
                             <a type="button" id="forgotPass" class="float-end" style="font-family: 'BIZ UDGothic', sans-serif; 
                             font-family: 'Patrick Hand', cursive;">Olvidé mi contraseña</a>
                         </div> -->
 
-                            <!-- Login Icons -->
-                            <div class="text-center text-lg-center mt-4 pt-2">
-                                <button (click)="loginWithEmail()" type="button" id="btn-register"
-                                    class="btn btn-primary loginButton buttonDarkGreen" style="font-family: 'BIZ UDGothic', sans-serif; 
-                                font-family: 'Patrick Hand', cursive;" >Iniciar sesión</button>
-                            </div>
+                        <!-- Login Icons -->
+                        <div class="text-center text-lg-center mt-4 pt-2">
+                            <button (click)="loginWithEmail()" type="button" id="btn-register"
+                                class="btn btn-primary loginButton buttonDarkGreen" style="font-family: 'BIZ UDGothic', sans-serif; 
+                                font-family: 'Patrick Hand', cursive;">Iniciar sesión</button>
+                        </div>
 
-                            <p class="small fw-bold mt-2 pt-1 mb-0">¿No tienes cuenta? <a routerLink="/Register"
-                                    class="link-danger">Registrarse</a></p>
+                        <p class="small fw-bold mt-2 pt-1 mb-0">¿No tienes cuenta? <a routerLink="/Register"
+                                class="link-danger">Registrarse</a></p>
 
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
-    <!-- <section class="">
+<!-- <section class="">
 
         <div class="container-fluid h-custom">
             <div class="row d-flex justify-content-center align-items-center h-60">
@@ -105,7 +103,7 @@
                         font-family: 'Patrick Hand', cursive;">Olvidé mi contraseña</a>
                     </div> -->
 
-                        <!-- Login Icons --
+<!-- Login Icons --
                         <div class="text-center text-lg-center mt-4 pt-2">
                             <button (click)="loginWithEmail()" type="button"
                                 class="btn btn-primary btn-lg loginButton buttonDarkGreen butonHover" style="font-family: 'BIZ UDGothic', sans-serif; 
