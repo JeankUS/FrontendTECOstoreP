@@ -1,3 +1,13 @@
+.container{
+    margin-bottom: 3rem;
+}
+h5{
+    margin-top: 10px;
+}
+p{
+    margin-top: 10px;
+    font-size: .8rem;
+}
 .title-page {
     display: block;
     text-align: center;

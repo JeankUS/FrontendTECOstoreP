@@ -95,18 +95,20 @@
     height: 20%;
 }
 
-.label {
+label {
     /* position: absolute; */
-    display: block;
+    /* display: block;
     width: 4rem;
-    height: 4rem;
-    margin-left: 2rem;
-    background-color: #34656D;
+    height: 4rem; */
+    /* margin-left: 2rem; */
+    /* background-color: #34656D;
     border-radius: 50px 50px 50px 50px;
     cursor: pointer;
-    user-select: none;
+    text-align: center;
+    user-select: none; */
     /* padding:1rem; */
 }
+
 
 .labelInputFile {
     margin-right: 1rem ;

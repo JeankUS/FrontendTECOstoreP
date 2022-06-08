@@ -99,6 +99,7 @@ export class MyproductsComponent implements OnInit {
   }
 
   obtenerIdProducto(id: string) {
+    console.log(id)
     this.idDelProducto = id
     return id
   }
@@ -107,6 +108,10 @@ export class MyproductsComponent implements OnInit {
     this.idDelProducto = id
     this.cargarEditarPerfil(id)
     return id
+  }
+
+  direccionando(id:string){
+    this.router.navigate([['/Details/', this.obtenerIdProducto(id)]])
   }
 
   async eliminarProducto() {

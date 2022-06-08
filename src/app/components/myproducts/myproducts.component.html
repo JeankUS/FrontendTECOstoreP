@@ -94,8 +94,8 @@
                 <div class="card-title"></div>
                 <!-- Atributos e imagen -->
                 <img src="{{producto.imagen}}" alt="pollito"
-                    [routerLink]="['/Details/', obtenerIdProducto(producto.idProducto)]" type=" button">
-                <div class="card-text" [routerLink]="['/Details/', obtenerIdProducto(producto.idProducto)]"
+                    (click)="direccionando(producto.idProducto)" type=" button">
+                <div class="card-text" (click)="direccionando(producto.idProducto)"
                     type=" button">
                     <h5 style="font-family: 'BIZ UDGothic', sans-serif; 
                             font-family: 'Patrick Hand', cursive;">{{ producto.nombre }}</h5>
