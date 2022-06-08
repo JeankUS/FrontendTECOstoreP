@@ -27,6 +27,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { PruebasComponent } from './components/pruebas/pruebas.component';
 import { ProductsFilterComponent } from './components/products-filter/products-filter.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { AcercaDeComponent } from './components/acerca-de/acerca-de.component';
 
 
 @NgModule({
@@ -43,6 +45,8 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     PruebasComponent,
     ProductsFilterComponent,
     ProductDetailsComponent,
+    FooterComponent,
+    AcercaDeComponent,
   ],
   imports: [
     BrowserModule,

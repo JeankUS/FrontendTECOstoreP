@@ -10,6 +10,7 @@ import { ReloadMyProductsComponent } from './components/reload-my-products/reloa
 import { PruebasComponent } from './components/pruebas/pruebas.component';
 import { ProductsFilterComponent } from './components/products-filter/products-filter.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { AcercaDeComponent } from './components/acerca-de/acerca-de.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'Home', pathMatch:"full"},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path:'Products',component: ProductsFilterComponent},
   {path:'Details',component: ProductDetailsComponent},
   {path:'Details/:id',component: ProductDetailsComponent},
+  {path:'Acerca-de',component: AcercaDeComponent},
   {path:'Pruebas',component: PruebasComponent},
   {path:'**',redirectTo:'Home', pathMatch:"full"},
 ];

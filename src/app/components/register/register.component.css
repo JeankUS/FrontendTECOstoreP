@@ -239,10 +239,6 @@ button[type="submit"]:hover {
 
 }
 
-/* .loader div div:nth-child(2) {
-    animation-delay: s;
-} */
-
 
 @keyframes loader {
     from {

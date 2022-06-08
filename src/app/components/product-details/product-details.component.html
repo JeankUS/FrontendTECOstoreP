@@ -35,7 +35,7 @@
                                         font-family: 'Patrick Hand', cursive;">{{ producto.nombre }}</h6>
                                 <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
                                             font-family: 'Patrick Hand', cursive;">
-                                    {{obtenerEmpresa(producto.idEmpresa)?.nombre}}</h6>
+                                    {{empresa.nombre}}</h6>
                                 <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
                                             font-family: 'Patrick Hand', cursive;">{{producto.categoria}}</h6>
                                 <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
@@ -71,9 +71,9 @@
             </div>
             <div class="info-contacto">
                 <i class="fa-brands fa-whatsapp-square"> </i>
-                <p>{{obtenerEmpresa(producto.idEmpresa)?.telefono}}</p>
+                <p>{{empresa.telefono}}</p>
                 <i class="fas fa-envelope"> </i>
-                <p>{{obtenerEmpresa(producto.idEmpresa)?.correo}}</p>
+                <p>{{empresa.correo}}</p>
             </div>
         </div>
         <div></div>

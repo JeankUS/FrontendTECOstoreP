@@ -158,14 +158,16 @@ img {
 
 .background-pagination {
     width: 100%;
-    position: fixed;
-    bottom: 2rem;
+    /* position: fixed; */
+    margin-bottom: 2rem;
     text-align: center;
     /* z-index: 999; */
     padding: 0.2rem;
+
 }
 
 .divPagination {
+    margin-bottom: 2rem;margin-top: 2rem;
     /* display: block; */
     margin-right: auto;
     margin-left: auto;

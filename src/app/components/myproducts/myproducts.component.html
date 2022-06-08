@@ -1,7 +1,11 @@
 <!-- <div class="title-container"> -->
-<div class="title-page">
+<div class="title-page" *ngIf="editando==false">
     <span></span>
     <span>Mis productos</span>
+</div>
+<div class="title-page" *ngIf="editando==true">
+    <span></span>
+    <span>Editando producto</span>
 </div>
 <!-- </div> -->
 
@@ -12,37 +16,222 @@
     <span>No existen productos registrados</span>
 </div>
 <div class="container">
-    <div class="row row-cols-1 row-cols-sm-5 row-cols-md-5" *ngIf="misProductos.length >= 1">
-        <div class="col" *ngFor="let producto of misProductos | paginate: { itemsPerPage: 10, currentPage: pages }">
+    <style>
+        .card-edit {
+            /* background-color: green */
+        }
+
+        .card-edit-body {
+            width: 30%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .loader {
+            width: 100px;
+            height: 50px;
+            color: #34656D;
+            display: block;
+            margin-bottom: 5%;
+            /* position: absolute; */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .loader span {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .loader div {
+            overflow: hidden;
+            border: 8px solid #34656D;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            /* padding: 0 10px 0 10px; */
+            height: 50px;
+            background-color: white;
+            transform: scale(0.6);
+        }
+
+        .loader div div {
+            width: 70%;
+            border: none;
+            border-radius: 10px;
+            height: 80%;
+            background-color: red;
+            animation: loader 1.9s infinite;
+
+        }
+
+
+        @keyframes loader {
+            from {
+                margin-left: -100%;
+                background-color: #A00F3D;
+            }
+
+            50% {
+                background-color: #FFA500;
+            }
+
+            to {
+                margin-left: 100%;
+                background-color: #71D20C;
+            }
+        }
+
+        #iconUpload {
+            font-size: 2rem;
+        }
+
+        .divInputImg {
+            text-align: center;
+            height: 20%;
+        }
+
+        #inputGroupFile01 {
+            display: none;
+            /* width: 5rem; */
+        }
+
+        .label {
+            cursor: pointer;
+        }
+
+
+        .botones-editar {
+            text-align: center;
+        }
+
+        .botones-editar .btn {
+            background-color: #34656D;
+            margin: 5px;
+            color: white;
+        }
+
+        .botones-editar .btn:hover {
+            background-color: #4CAF50;
+            margin: 5px;
+            color: white;
+        }
+
+        .div-imagen {
+            text-align: center;
+            max-height: 28rem;
+        }
+
+        .div-imagen img {
+            max-height: 28rem;
+        }
+
+        textarea{
+            height: 6rem!important;
+        }
+    </style>
+    <div class="card-edit" *ngIf="editando==true">
+        <div class="card-edit-body" [formGroup]="editForm">
+            <p class="form-floating">
+                <input class="text-start inputEdit form-control" type="text" id="formNombre" type="text"
+                    formControlName="nombre">
+                <label for="formNombre">Nombre:</label>
+            </p>
+
+            <p class="form-floating">
+                <input class="text-start inputEdit form-control" id="formCategoria" type="text"
+                    formControlName="categoria">
+                <label for="formCategoria">Categoría:</label>
+            </p>
+            <div class="form-floating">
+                <textarea class="text-start inputEdit form-control" id="formDescripcion" type="text"
+                    formControlName="descripcion" style="resize: none;" formControlName="descripcion"
+                    placeholder="Descripción" cols="30" rows="7"></textarea>
+                <label for="formDescripcion">Descripción:</label>
+            </div>
+            <div class="div-imagen mb-3">
+                <img src="{{imagenes[0]}}" *ngIf="esteUrlImagen!='' && esteUrlImagen!=null && esteUrlImagen!='cargando'"
+                    alt="" id="imagenProducto">
+            </div>
+            <div class="div-imagen mb-3">
+                <img src="{{imagenes[0]}}" *ngIf="esteUrlImagen=='' && imagenes.length ==1" alt="" id="imagenProducto">
+            </div>
+            <div *ngIf="esteUrlImagen=='cargando'" class="loader">
+                <!-- <span>Cargando...</span> -->
+                <div>
+                    <div></div>
+                </div>
+            </div>
+            <div class="divInputImg">
+                <input type="file" accept=".png, .jpg, .jpeg" class="form-control" id="inputGroupFile01" multiple
+                    (change)="uploadImgStorage($event)">
+                <label for="inputGroupFile01" class="labelInputFile">
+                    <i class="fa-solid fa-cloud-arrow-up" id="iconUpload"></i>
+                </label>
+            </div>
+        </div>
+
+        <div class="botones-editar" style="font-family: 'BIZ UDGothic', sans-serif; 
+                font-family: 'Patrick Hand', cursive; font-size:x-large">
+            <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">Guardar</button>
+            <button type="button" class="btn" (click)="volverCarga()">
+                Cancelar</button>
+            <!-- Agrega los productos a firebase -->
+        </div>
+
+        <!-- Modal Editar Empresa-->
+        <div class=" modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Desea guardar cambios?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btnConfimar"
+                            (click)="editarProducto()" data-dismiss="modal">Guardar
+                            Cambios</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fila" *ngIf="productos.length >= 1 && editando==false">
+        <div class="columna" *ngFor="let producto of misProductos | paginate: { itemsPerPage: 10, currentPage: pages }">
             <div class="card">
-                <div class="card-title">
+                <!-- Titulo -->
+                <div class="card-title"></div>
+                <!-- Atributos e imagen -->
+                <img src="{{producto.imagen}}" alt="pollito"
+                    [routerLink]="['/Details/', obtenerIdProducto(producto.idProducto)]" type=" button">
+                <div class="card-text" [routerLink]="['/Details/', obtenerIdProducto(producto.idProducto)]"
+                    type=" button">
                     <h5 style="font-family: 'BIZ UDGothic', sans-serif; 
                             font-family: 'Patrick Hand', cursive;">{{ producto.nombre }}</h5>
+                    <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
+                                font-family: 'Patrick Hand', cursive;">
+                        {{obtenerEmpresa(producto.idEmpresa)?.nombre}}</h6>
                 </div>
-                <div class="card-body" [routerLink]="['/Details/', obtenerIdProducto(producto.idProducto)]" type="button" >
-                    <div class="card-text">
-                        <img src="{{producto.imagen}}" alt="pollito">
-                        <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
-                                font-family: 'Patrick Hand', cursive;">{{obtenerEmpresa(producto.idEmpresa)?.nombre}}</h6>
-                        <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
-                                font-family: 'Patrick Hand', cursive;">{{producto.idProducto}}</h6>
-                    </div>
-
-                </div>
+                <!-- Footer  -->
                 <div class="align-items-center footerCard">
                     <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
-                            font-family: 'Patrick Hand', cursive; font-size:x-large">
-                        <i type="button" class="fa-solid fa-edit me-3 iconosSelect"></i>
-                        <i type="button" class="fa-solid fa-trash ms-3 iconosSelect"
-                            (click)="obtenerIdProducto(producto.idProducto)" data-toggle="modal"
-                            data-target="#exampleModal"></i>
+                                font-family: 'Patrick Hand', cursive; font-size:x-large">
+                        <i type="button" class="fa-solid fa-edit me-3"
+                            (click)="obtenerIdProductoEditar(producto.idProducto)"></i>
+                        <i type="button" class="fa-solid fa-trash ms-3" (click)="obtenerIdProducto(producto.idProducto)"
+                            data-toggle="modal" data-target="#exampleModal"></i>
                     </p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="background-pagination" *ngIf="misProductos.length >= 1">
+
+<div class="background-pagination" *ngIf="misProductos.length >= 12 && editando==false">
     <div class="divPagination">
         <pagination-controls class="my-pagination" [maxSize]='7' previousLabel="" nextLabel=""
             (pageChange)="pages = $event">
@@ -73,7 +262,7 @@
                 Esta acción no tiene retorno.
             </div>
             <div class="modal-footer">
-                <button type="button" class="botton btnConfimar" (click)="eliminarProducto()"
+                <button type="button" class="btn botton btnConfimar" (click)="eliminarProducto()"
                     data-dismiss="modal">Eliminar</button>
                 <button type="button" class="btn btnCancelar" data-dismiss="modal">Cancelar</button>
             </div>

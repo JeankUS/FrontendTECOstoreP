@@ -22,23 +22,19 @@ export class ProductDetailsComponent implements OnInit {
   empresas: userEmpresa[] = []
   productos: product[] = [];
   producto: product = { idEmpresa: '', idProducto: '', nombre: '', categoria: '', descripcion: '', imagen: '' };
-
+  empresa: userEmpresa = { idj: '', nombre: '', telefono: '', correo: '', contra: '' }
   constructor(private router: Router,
     private fb: FormBuilder,
     private _serviceAuth: AuthService,
     private _userService: UsersService,
     private _productsService: ProductsService,
-    private toastr: ToastrService,
-    private auth: Auth,
-    private firestore: Firestore,
-    private _storageService: StorageService,
     private aRoute: ActivatedRoute) {
     this.id = this.aRoute.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
-    this.getProductos();
     this.getUsuarios();
+    this.getProductos();
 
   }
   getUsuarios() {
@@ -61,16 +57,17 @@ export class ProductDetailsComponent implements OnInit {
       if (this.id != null) {
         if (this.id == this.productos[i].idProducto) {
           this.producto = this.productos[i]
+          this.obtenerEmpresa(this.productos[i].idEmpresa)
         }
       }
     }
   }
   obtenerEmpresa(id: string) {
     for (let i = 0; this.empresas.length; i++) {
-      if (this.empresas[i].idj = id) {
-        return this.empresas[i]
+      if (this.empresas[i].idj == id) {
+        this.empresa = this.empresas[i]
+        break
       }
     }
-    return null
   }
 }
