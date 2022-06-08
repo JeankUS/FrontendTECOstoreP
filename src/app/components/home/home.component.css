@@ -1,13 +1,16 @@
-.container{
+.container {
     margin-bottom: 3rem;
 }
-h5{
+
+h5 {
     margin-top: 10px;
 }
-p{
+
+p {
     margin-top: 10px;
     font-size: .8rem;
 }
+
 .title-page {
     display: block;
     text-align: center;
@@ -30,12 +33,102 @@ p{
     margin-bottom: 2rem;
 }
 
+.div-search {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.search {
+    display: inline;
+    width: 40%;
+}
+
+.div-search .search div {
+    display: inline;
+}
+
+.div-search .search div input {
+    border: 1px solid #34656D;
+    font-size: large;
+    width: 25%;
+    /* border-radius: 0px 25px 25px 0px; */
+}
+
+.div-search .search div select {
+    font-family: 'New Tegomin', serif;
+    font-size: large;
+    color: black;
+    padding: 0.01% 0.4% 0.15% 0.4%;
+    border: 1px solid #34656D;
+    border-radius: 7px 0px 0px 7px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 12%;
+    background: url(https://cdn-icons-png.flaticon.com/512/36/36684.png) 94% / 10% no-repeat #ff8c00e1;
+}
+
+.div-search .search div select:hover {
+    background-color: #ff8c0090
+}
+
+
+
+.div-icon-search {
+    display: inline-block !important;
+    font: large;
+    border: 1px solid black;
+    margin: 0px 0.01% 0px 0.01%;
+    padding: 0.18% 0.2% 0.1% 0.2%;
+    border-radius: 0px 7px 7px 0px;
+    height: 100%;
+    background-color: #55A611;
+    color: white;
+}
+
+.div-icon-search:hover>i {
+    font-size: large;
+    color: white;
+}
+
+.div-icon-search:active>i {
+    font: small;
+    color: black;
+}
+
+
+
+.tooltip {
+    /* display: inline-block;
+    position: relative; */
+}
+
+.div-search .search div span {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 2px 0;
+    border-radius: 6px;
+    /* visibility: visible; */
+    top: -5px;
+    right: 105%;
+
+}
+
+.div-search .search div select:hover>.div-search .search div span {
+    visibility: visible;
+}
 
 .col {
     margin: 1rem 0rem;
     width: 20%;
     height: 22rem;
 }
+
 .fila {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -45,7 +138,7 @@ p{
 
 .columna {
     height: 25rem;
-    width:300px;
+    width: 300px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -177,7 +270,8 @@ img {
 }
 
 .divPagination {
-    margin-bottom: 2rem;margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
     /* display: block; */
     margin-right: auto;
     margin-left: auto;

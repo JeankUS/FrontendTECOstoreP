@@ -239,7 +239,7 @@ export class ProductsFilterComponent implements OnInit {
 
   obtenerEmpresa(id: string) {
     for (let i = 0; this.empresas.length; i++) {
-      if (this.empresas[i].idj = id) {
+      if (this.empresas[i].idj == id) {
         return this.empresas[i]
       }
     }

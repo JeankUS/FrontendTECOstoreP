@@ -4,7 +4,7 @@
 
 <div class="divider my-4"></div>
 
-<div class="div-search" *ngIf="productos.length > 0">
+<div class="div-search my-4" *ngIf="productos.length > 0">
     <div class="search">
         <form action="" [formGroup]="formSearch">
             <div style="display:inline;">
@@ -42,70 +42,47 @@
 </div>
 
 <div class="container">
-    
-    <div class="row row-cols-1 row-cols-sm-5 row-cols-md-5" *ngIf="productos.length >= 1 && misProductos.length<1 && noresults==false">
-        <div class="col" *ngFor="let producto of productos | paginate: { itemsPerPage: 10, currentPage: pages }">
-            <div class="card">
+    <div class="fila" *ngIf="productos.length >= 1 && misProductos.length<1 && noresults==false">
+        <div class="columna" *ngFor="let producto of productos | paginate: { itemsPerPage: 12, currentPage: pages }">
+            <div class="card" [routerLink]="['/Details/', obtenerIdProducto(producto.idProducto)]" type=" button">
                 <!-- Titulo -->
-                <div class="card-title">
-                    <h5 style="font-family: 'BIZ UDGothic', sans-serif; 
-                            font-family: 'Patrick Hand', cursive;">{{ producto.nombre }}</h5>
-                </div>
+                <div class="card-title"></div>
                 <!-- Atributos e imagen -->
-                <div class="card-body" [routerLink]="['/Details/', obtenerIdProducto(producto.idProducto)]" type="button">
-                    <div class="card-text">
-                        <img src="{{producto.imagen}}" alt="pollito">
-                        <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
-                                font-family: 'Patrick Hand', cursive;">{{obtenerEmpresa(producto.idEmpresa)?.nombre}}</h6>
-                        <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
-                                font-family: 'Patrick Hand', cursive;">{{producto.idProducto}}</h6>
-                        <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
-                                font-family: 'Patrick Hand', cursive;">{{producto.categoria}}</h6>
-                    </div>
-
+                <img src="{{producto.imagen}}" alt="pollito">
+                <div class="card-text">
+                    <h5 style="font-family: 'BIZ UDGothic', sans-serif; 
+                                font-family: 'Patrick Hand', cursive;">{{ producto.nombre }}</h5>
+                    <p style="font-family: 'BIZ UDGothic', sans-serif; 
+                                    font-family: 'Patrick Hand', cursive;">
+                        {{obtenerEmpresa(producto.idEmpresa)?.nombre}}</p>
                 </div>
                 <!-- Footer  -->
-                <div class="align-items-center footerCard">
-                    <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
-                            font-family: 'Patrick Hand', cursive; font-size:x-large">
-                    </p>
-                </div>
+                <div class="align-items-center footerCard"></div>
             </div>
         </div>
     </div>
-    <div class="row row-cols-1 row-cols-sm-5 row-cols-md-5" *ngIf="misProductos.length >= 1 && noresults==false">
-        <div class="col" (change)="misProductos"
-            *ngFor="let producto of misProductos | paginate: { itemsPerPage: 10, currentPage: pages }">
-            <div class="card">
+    <div class="fila" *ngIf="misProductos.length >= 1 && noresults==false">
+        <div class="columna" (change)="misProductos"
+        *ngFor="let producto of misProductos | paginate: { itemsPerPage: 10, currentPage: pages }">
+            <div class="card" [routerLink]="['/Details/', obtenerIdProducto(producto.idProducto)]" type=" button">
                 <!-- Titulo -->
-                <div class="card-title">
-                    <h5 style="font-family: 'BIZ UDGothic', sans-serif; 
-                            font-family: 'Patrick Hand', cursive;">{{ producto.nombre }}</h5>
-                </div>
+                <div class="card-title"></div>
                 <!-- Atributos e imagen -->
-                <div class="card-body" [routerLink]="['/Details/', obtenerIdProducto(producto.idProducto)]" type="button">
-                    <div class="card-text">
-                        <img src="{{producto.imagen}}" alt="pollito">
-                        <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
-                                font-family: 'Patrick Hand', cursive;">{{obtenerEmpresa(producto.idEmpresa)?.nombre}}</h6>
-                        <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
-                                font-family: 'Patrick Hand', cursive;">{{producto.idProducto}}</h6>
-                        <h6 style="font-family: 'BIZ UDGothic', sans-serif; 
-                                font-family: 'Patrick Hand', cursive;">{{producto.categoria}}</h6>
-                    </div>
-
+                <img src="{{producto.imagen}}" alt="pollito">
+                <div class="card-text">
+                    <h5 style="font-family: 'BIZ UDGothic', sans-serif; 
+                                font-family: 'Patrick Hand', cursive;">{{ producto.nombre }}</h5>
+                    <p style="font-family: 'BIZ UDGothic', sans-serif; 
+                                    font-family: 'Patrick Hand', cursive;">
+                        {{obtenerEmpresa(producto.idEmpresa)?.nombre}}</p>
                 </div>
                 <!-- Footer  -->
-                <div class="align-items-center footerCard">
-                    <p class="text-center fw-bold mx-3 mb-0" style="font-family: 'BIZ UDGothic', sans-serif; 
-                            font-family: 'Patrick Hand', cursive; font-size:x-large">
-                    </p>
-                </div>
+                <div class="align-items-center footerCard"></div>
             </div>
         </div>
     </div>
 </div>
-<div class="background-pagination" *ngIf="productos.length >= 1 && misProductos.length<1 && noresults==false">
+<div class="background-pagination" *ngIf="productos.length >= 12 && misProductos.length<1 && noresults==false">
     <div class="divPagination">
         <pagination-controls class="my-pagination" [maxSize]='7' previousLabel="" nextLabel=""
             (pageChange)="pages = $event">
@@ -113,7 +90,7 @@
     </div>
 </div>
 
-<div class="background-pagination" *ngIf="misProductos.length >= 1 && noresults==false">
+<div class="background-pagination" *ngIf="misProductos.length >= 12 && noresults==false">
     <div class="divPagination">
         <pagination-controls class="my-pagination" [maxSize]='7' previousLabel="" nextLabel=""
             (pageChange)="pages = $event">

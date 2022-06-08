@@ -9,6 +9,7 @@
 </div>
 
 <div class="container">
+    
     <div class="fila" *ngIf="productos.length >= 1">
         <div class="columna" *ngFor="let producto of productos | paginate: { itemsPerPage:12, currentPage: pages }">
             <div class="card" [routerLink]="['/Details/', obtenerIdProducto(producto.idProducto)]" type=" button">

@@ -14,7 +14,7 @@ import { AcercaDeComponent } from './components/acerca-de/acerca-de.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'Home', pathMatch:"full"},
-  {path:'Home',component: HomeComponent},
+  // {path:'Home',component: HomeComponent},
   {path:'Login',component: LoginComponent},
   {path:'Register',component: RegisterComponent},
   {path:'Miperfil',component: MiperfilComponent},
