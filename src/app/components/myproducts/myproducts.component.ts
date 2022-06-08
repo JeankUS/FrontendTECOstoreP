@@ -23,6 +23,7 @@ export class MyproductsComponent implements OnInit {
   editando = false;
   mostrarImagen = false;
   esteUrlImagen: string | null = ''
+  idEnrutar: string | null = ''
   idDelProducto: string | null = ''
   pages: number = 1;
   //Listas
@@ -61,8 +62,9 @@ export class MyproductsComponent implements OnInit {
 
   async editarProducto() {
     this.editando = true;
-    if(this.esteUrlImagen=='' || this.esteUrlImagen==null || this.esteUrlImagen!='cargando'){
-      this.imagenes[0]=this.esteUrlImagen;
+    if (this.esteUrlImagen == '' || this.esteUrlImagen == null || this.esteUrlImagen == 'cargando') {
+      this.esteUrlImagen = this.imagenes[0];
+      console.log(this.esteUrlImagen);
     }
     // if (confirm("¿Estas seguro que deseas guardar los cambios?")) {
     const producto: product = {
@@ -78,7 +80,7 @@ export class MyproductsComponent implements OnInit {
     querySnapshot.forEach((doc) => {
       this._productsService.updateProducto(doc.id, producto).then(() => {
         this.editando = false;
-        this.toastr.info('Empleado modificado con exito', 'Empleado modificado');
+        this.toastr.info('producto modificado con éxito', 'Producto modificado');
         this.router.navigate(['/Miperfil']);
         this.editando = false;
       })
@@ -99,7 +101,6 @@ export class MyproductsComponent implements OnInit {
   }
 
   obtenerIdProducto(id: string) {
-    console.log(id)
     this.idDelProducto = id
     return id
   }
@@ -110,8 +111,9 @@ export class MyproductsComponent implements OnInit {
     return id
   }
 
-  direccionando(id:string){
-    this.router.navigate([['/Details/', this.obtenerIdProducto(id)]])
+  obtenerIdProductoEnrutando(id: string) {
+    this.idEnrutar = id
+    return id
   }
 
   async eliminarProducto() {
@@ -173,7 +175,7 @@ export class MyproductsComponent implements OnInit {
     // this.getProductos();
   }
   uploadImgStorage(event: any) {
-    this.imagenes=[]
+    this.imagenes = []
     let idGenerated = Math.random().toString(36).substring(2, 32)                             //genera un id random para la dirección url de la imagen
     this.esteUrlImagen = 'cargando'
     let archivos = event.target.files
@@ -193,7 +195,7 @@ export class MyproductsComponent implements OnInit {
   }
 
   cargarEditarPerfil(id: string) {
-    this.imagenes=[]
+    this.imagenes = []
     for (let i = 0; i < this.productos.length; i++) {
       if (this.productos[i].idProducto == id) {
         this.editForm.setValue({

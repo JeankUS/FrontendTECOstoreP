@@ -63,7 +63,7 @@ export class MiperfilComponent implements OnInit {
             if (this.empresas[i].correo == this.auth.currentUser.email) {
               this._usuarioService.updateUsuario(doc.id, empresa).then(() => {
                 this.editando = false;
-                this.toastr.info('Empleado modificado con exito', 'Empleado modificado');
+                this.toastr.info('Empresa modificado con exito', 'Empresa modificado');
                 this.router.navigate(['/Miperfil']);
                 this.editando = false;
               })
